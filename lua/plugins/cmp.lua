@@ -24,7 +24,7 @@ local cmp_configuration = function(_, _)
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<Tab>"] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
@@ -34,12 +34,12 @@ local cmp_configuration = function(_, _)
     }),
     formatting = {
       format = require("lspkind").cmp_format({
-        mode = "symbol", -- show only symbol annotations
-        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        mode = "symbol",       -- show only symbol annotations
+        maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
         ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
         -- The function below will be called before any actual modifications from lspkind
-        -- so that you can provide more controls on popup customization. 
+        -- so that you can provide more controls on popup customization.
         -- (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
         -- @param entry
         -- @param vim_item
@@ -77,24 +77,25 @@ local cmp_configuration = function(_, _)
     }),
   })
 
-  -- Set up lspconfig.
-  -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 end
 
 return {
-	"hrsh7th/nvim-cmp",
-	dependencies = {
+  setup = function()
+    return {
+      "hrsh7th/nvim-cmp",
+      dependencies = {
 
-		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "hrsh7th/cmp-buffer" },
-		{ "hrsh7th/cmp-path" },
-		{ "hrsh7th/cmp-cmdline" },
+        { "hrsh7th/cmp-nvim-lsp" },
+        { "hrsh7th/cmp-buffer" },
+        { "hrsh7th/cmp-path" },
+        { "hrsh7th/cmp-cmdline" },
 
-		{ "L3MON4D3/LuaSnip" },
-		{ "saadparwaiz1/cmp_luasnip" },
+        { "L3MON4D3/LuaSnip" },
+        { "saadparwaiz1/cmp_luasnip" },
 
-		{ "onsails/lspkind.nvim" },
-	},
-	config = cmp_configuration
+        { "onsails/lspkind.nvim" },
+      },
+      config = cmp_configuration
+    }
+  end
 }
-

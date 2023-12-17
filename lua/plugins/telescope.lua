@@ -4,7 +4,6 @@
 --
 -- --------------------------------------------------------------------------------------------------------------------
 
-
 -- Set the global ignore patterns
 local ignore_patterns = {
   "node_modules",
@@ -130,11 +129,15 @@ local telescope_config = function()
 end
 
 return {
-  'nvim-telescope/telescope.nvim',
-  tag = '0.1.5',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  },
-  config = telescope_config,
+  setup = function()
+    return {
+      'nvim-telescope/telescope.nvim',
+      tag = '0.1.5',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      },
+      config = telescope_config,
+    }
+  end
 }

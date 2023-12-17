@@ -3,6 +3,16 @@
 -- lazy.nvim plugin manager
 --
 -- --------------------------------------------------------------------------------------------------------------------
+
+-- This will not mantain order
+local plugin_list = {
+  require("plugins.cmp").setup(),
+  require("plugins.lsp").setup(),
+  require("plugins.telescope").setup(),
+}
+
+local opts = {}
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -17,5 +27,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Loading plugin path
-require("lazy").setup("plugins")
-
+require("lazy").setup(plugin_list, opts)

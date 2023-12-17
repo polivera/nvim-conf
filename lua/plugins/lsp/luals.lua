@@ -12,7 +12,7 @@ return {
 						globals = { "vim" },
 					},
 					completion = {
-						callSnippet = true,
+						callSnippet = "Replace",
 					},
 					workspace = {
 						-- library setting is handle by neodev plugin

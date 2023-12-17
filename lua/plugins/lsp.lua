@@ -24,6 +24,7 @@ end
 
 -- Plugin loading function
 local lsp_config = function(_, opts)
+  local _ = require("neodev").setup({})
   local lspconfig = require("lspconfig")
   local ok_cmp, cmp_nvim = pcall(require, "cmp_nvim_lsp")
 
@@ -69,14 +70,22 @@ end
 
 -- Plugin definition
 return {
-  "neovim/nvim-lspconfig",
-  opts = {
-    servers = {
-      lua_ls = require("plugins.lsp.lua"),
-    },
-    ignore_formatting = {
-      lua_ls = true,
-    },
-  },
-  config = lsp_config,
+  setup = function()
+    return {
+      "neovim/nvim-lspconfig",
+      dependencies = {
+        "folke/neodev.nvim",
+      },
+      opts = {
+        servers = {
+          lua_ls = require("plugins.lsp.luals"),
+          gopls = require("plugins.lsp.gopls"),
+        },
+        ignore_formatting = {
+          lua_ls = true,
+        },
+      },
+      config = lsp_config,
+    }
+  end
 }
