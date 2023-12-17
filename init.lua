@@ -7,3 +7,4 @@ require('poli.keymaps')
 
 -- Lazy plugin manager configuration
 require('poli.lazy')
+
