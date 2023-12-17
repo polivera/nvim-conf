@@ -3,50 +3,64 @@
 -- Telescope configuration
 --
 -- --------------------------------------------------------------------------------------------------------------------
-local telescope_nvim_mapppings = function()
-  local set_keymap = vim.keymap.set
-  local base_opts = { noremap = true, silent = true }
 
-  set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", base_opts)
-  set_keymap("n", "<leader>fj", "<cmd>Telescope live_grep<cr>", base_opts)
-  set_keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", base_opts)
-  set_keymap("n", "<leader>fm", "<cmd>Telescope commands<cr>", base_opts)
-  set_keymap("n", "<leader>fu", "<cmd>Telescope buffers<cr>", base_opts)
-end
+
+-- Set the global ignore patterns
+local ignore_patterns = {
+  "node_modules",
+}
+
+
+local extensions = {
+  fzf = function(_)
+    return {
+      fuzzy = true,                   -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+    }
+  end,
+
+  ["ui-select"] = function(_)
+    return require("telescope.themes").get_dropdown({})
+  end,
+}
+
+
 
 local telescope_plugin_mappings = function()
   local ta = require("telescope.actions")
 
   return {
-        n = {
-          ["<C-n>"] = ta.cycle_history_next,
-          ["<C-p>"] = ta.cycle_history_prev,
-          ["<C-j>"] = ta.move_selection_next,
-          ["<C-k>"] = ta.move_selection_previous,
-          ["<C-c>"] = ta.close,
-          ["<CR>"] = ta.select_default,
-          ["<C-x>"] = ta.select_horizontal,
-          ["<C-v>"] = ta.select_vertical,
-          ["<C-t>"] = ta.select_tab,
-        },
-        i = {
-          ["<C-n>"] = ta.cycle_history_next,
-          ["<C-p>"] = ta.cycle_history_prev,
-          ["<C-j>"] = ta.move_selection_next,
-          ["<C-k>"] = ta.move_selection_previous,
-          ["<C-c>"] = ta.close,
-          ["<CR>"] = ta.select_default,
-          ["<C-x>"] = ta.select_horizontal,
-          ["<C-v>"] = ta.select_vertical,
-          ["<C-t>"] = ta.select_tab,
-        },
-      }
+    n = {
+      ["<C-n>"] = ta.cycle_history_next,
+      ["<C-p>"] = ta.cycle_history_prev,
+      ["<C-j>"] = ta.move_selection_next,
+      ["<C-k>"] = ta.move_selection_previous,
+      ["<C-c>"] = ta.close,
+      ["<CR>"] = ta.select_default,
+      ["<C-x>"] = ta.select_horizontal,
+      ["<C-v>"] = ta.select_vertical,
+      ["<C-t>"] = ta.select_tab,
+    },
+    i = {
+      ["<C-n>"] = ta.cycle_history_next,
+      ["<C-p>"] = ta.cycle_history_prev,
+      ["<C-j>"] = ta.move_selection_next,
+      ["<C-k>"] = ta.move_selection_previous,
+      ["<C-c>"] = ta.close,
+      ["<CR>"] = ta.select_default,
+      ["<C-x>"] = ta.select_horizontal,
+      ["<C-v>"] = ta.select_vertical,
+      ["<C-t>"] = ta.select_tab,
+    },
+  }
 end
 
 local telescope_config = function()
   local telescope = require("telescope")
 
-  telescope.setup({
+  local telescope_settings = {
     -- Base configuration
     defaults = {
       mappings = telescope_plugin_mappings(),
@@ -97,26 +111,30 @@ local telescope_config = function()
         hidden = false,
       },
     },
-    -- Extensions configurations
-    extensions = {
-      fzf = {
-        fuzzy = true, -- false will only do exact matching
-        override_generic_sorter = true, -- override the generic sorter
-        override_file_sorter = true, -- override the file sorter
-        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-      },
-      ["ui-select"] = {
-        require("telescope.themes").get_dropdown({}),
-      },
-    },
-  })
+    -- extensions
+    extensions = {},
+  }
 
-  telescope_nvim_mapppings()
+  for ext_name, ext_config in pairs(extensions) do
+    telescope_settings.extensions[ext_name] = ext_config()
+  end
+
+  telescope.setup(telescope_settings)
+
+  for ext_name, _ in pairs(extensions) do
+    local ok, _ = pcall(require, ext_name)
+    if ok then
+      telescope.load_extension(ext_name)
+    end
+  end
 end
 
 return {
-  'nvim-telescope/telescope.nvim', 
+  'nvim-telescope/telescope.nvim',
   tag = '0.1.5',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  },
   config = telescope_config,
 }

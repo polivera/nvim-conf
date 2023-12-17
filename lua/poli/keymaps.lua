@@ -46,3 +46,26 @@ vim.keymap.set("n", "<leader>x", "<cmd>split<cr>", base_opts)
 vim.keymap.set("n", "<leader>v", "<cmd>vsplit<cr>", base_opts)
 vim.keymap.set("n", "<leader>c", "<cmd>close<cr>", base_opts)
 vim.keymap.set("n", "<leader>q", "<cmd>bd<cr>", base_opts)
+
+-- Activate sessionizer
+vim.keymap.set("n", "<C-p>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>", base_opts)
+
+-- Make m yank and delete, d just delete and c change without yank
+vim.keymap.set({ "n", "x" }, "m", "d", base_opts)
+vim.keymap.set({ "n", "x" }, "M", "D", base_opts)
+vim.keymap.set({ "n", "x" }, "mm", "dd", base_opts)
+vim.keymap.set({ "n", "x" }, "d", '"_d', base_opts)
+vim.keymap.set({ "n", "x" }, "D", '"_D', base_opts)
+vim.keymap.set({ "n", "x" }, "c", '"_c', base_opts)
+vim.keymap.set({ "n", "x" }, "C", '"_C', base_opts)
+vim.keymap.set({ "n", "x" }, "x", '"_x', base_opts)
+vim.keymap.set({ "n", "x" }, "X", '"_X', base_opts)
+
+-- Telescope keybinding
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", base_opts)
+vim.keymap.set("n", "<leader>fj", "<cmd>Telescope live_grep<cr>", base_opts)
+vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", base_opts)
+vim.keymap.set("n", "<leader>fm", "<cmd>Telescope commands<cr>", base_opts)
+vim.keymap.set("n", "<leader>fu", "<cmd>Telescope buffers<cr>", base_opts)
+
+
