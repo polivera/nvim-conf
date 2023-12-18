@@ -69,5 +69,8 @@ vim.keymap.set("n", "<leader>fm", "<cmd>Telescope commands<cr>", base_opts)
 vim.keymap.set("n", "<leader>fu", "<cmd>Telescope buffers<cr>", base_opts)
 
 -- Neo tree
-vim.keymap.set("n", "<leader>\\", "<cmd>Neotree toggle<cr>", base_opts)
+vim.keymap.set("n", "<leader>\\", "<cmd>Neotree filesystem toggle<cr>", base_opts)
+vim.keymap.set("n", "<leader>tt", "<cmd>Neotree filesystem toggle reveal<cr>", base_opts)
+vim.keymap.set("n", "<leader>tg", "<cmd>Neotree git_status toggle<cr>", base_opts)
+vim.keymap.set("n", "<leader>ts", "<cmd>Neotree buffers toggle<cr>", base_opts)
 

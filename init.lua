@@ -1,4 +1,3 @@
-
 -- Include base options
 require('poli.options')
 

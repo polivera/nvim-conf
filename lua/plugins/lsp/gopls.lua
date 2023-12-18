@@ -2,12 +2,10 @@ return {
   config = function(go_lsp_server)
     go_lsp_server.setup({
       settings = {
-        ui = {
-          completion = {
-            usePlaceholders = true,
-          },
-        },
         gopls = {
+          completeUnimported = true,
+          usePlaceholders = true,
+          buildFlags = { "-tags=unit,integration,e2e" },
           analyses = {
             unusedparams = true,
           },
