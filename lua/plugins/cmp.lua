@@ -76,7 +76,6 @@ local cmp_configuration = function(_, _)
       { name = "cmdline" },
     }),
   })
-
 end
 
 return {

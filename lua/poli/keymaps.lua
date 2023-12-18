@@ -68,4 +68,6 @@ vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", base_opts)
 vim.keymap.set("n", "<leader>fm", "<cmd>Telescope commands<cr>", base_opts)
 vim.keymap.set("n", "<leader>fu", "<cmd>Telescope buffers<cr>", base_opts)
 
+-- Neo tree
+vim.keymap.set("n", "<leader>\\", "<cmd>Neotree toggle<cr>", base_opts)
 
