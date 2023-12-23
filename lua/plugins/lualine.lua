@@ -53,13 +53,9 @@ local lualine_config = function(_, _)
 end
 
 return {
-  setup = function()
-    return {
-      "nvim-lualine/lualine.nvim",
-      dependencies = {
-        { "nvim-tree/nvim-web-devicons" },
-      },
-      config = lualine_config,
-    }
-  end,
+  "nvim-lualine/lualine.nvim",
+  dependencies = {
+    { "nvim-tree/nvim-web-devicons" },
+  },
+  config = lualine_config,
 }

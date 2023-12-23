@@ -6,14 +6,14 @@
 
 -- This will not mantain order
 local plugin_list = {
-  require("plugins.telescope").setup(),
-  require("plugins.cmp").setup(),
-  require("plugins.lsp").setup(),
-  require("plugins.treesitter").setup(),
-  require("plugins.gruvbox").setup(),
-  require("plugins.lualine").setup(),
-  require("plugins.gitsigns").setup(),
-  require("plugins.neotree").setup(),
+  require("plugins.telescope"),
+  require("plugins.cmp"),
+  require("plugins.lsp"),
+  require("plugins.treesitter"),
+  require("plugins.gruvbox"),
+  require("plugins.lualine"),
+  require("plugins.gitsigns"),
+  require("plugins.neotree"),
 }
 
 local opts = {}

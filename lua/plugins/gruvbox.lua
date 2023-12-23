@@ -18,7 +18,7 @@ local gruvbox_config = function(_, _)
     invert_tabline = false,
     invert_intend_guides = false,
     inverse = true, -- invert background for search, diffs, statuslines and errors
-    contrast = "", -- can be "hard", "soft" or empty string
+    contrast = "",  -- can be "hard", "soft" or empty string
     palette_overrides = {},
     overrides = {},
     dim_inactive = false,
@@ -28,11 +28,7 @@ local gruvbox_config = function(_, _)
 end
 
 return {
-  setup = function()
-    return {
-      "ellisonleao/gruvbox.nvim",
-      priority = 1000,
-      config = gruvbox_config,
-    }
-  end
+  "ellisonleao/gruvbox.nvim",
+  priority = 1000,
+  config = gruvbox_config,
 }

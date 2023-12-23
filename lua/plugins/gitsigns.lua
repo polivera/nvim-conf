@@ -56,10 +56,6 @@ local gitsign_functions = function(_, _)
 end
 
 return {
-  setup = function()
-    return {
-      "lewis6991/gitsigns.nvim",
-      config = gitsign_functions,
-    }
-  end
+  "lewis6991/gitsigns.nvim",
+  config = gitsign_functions,
 }

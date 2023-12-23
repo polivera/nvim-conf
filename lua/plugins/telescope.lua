@@ -9,7 +9,6 @@ local ignore_patterns = {
   "node_modules",
 }
 
-
 local extensions = {
   fzf = function(_)
     return {
@@ -24,8 +23,6 @@ local extensions = {
     return require("telescope.themes").get_dropdown({})
   end,
 }
-
-
 
 local telescope_plugin_mappings = function()
   local ta = require("telescope.actions")
@@ -129,15 +126,11 @@ local telescope_config = function()
 end
 
 return {
-  setup = function()
-    return {
-      'nvim-telescope/telescope.nvim',
-      tag = '0.1.5',
-      dependencies = {
-        'nvim-lua/plenary.nvim',
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-      },
-      config = telescope_config,
-    }
-  end
+  'nvim-telescope/telescope.nvim',
+  tag = '0.1.5',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  },
+  config = telescope_config,
 }

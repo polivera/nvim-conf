@@ -13,7 +13,7 @@ local lsp_keymaps = function(bufnr)
   vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
   vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "<leader>le", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>lf", function()
     vim.lsp.buf.format({ async = true })
   end, opts)
@@ -70,22 +70,18 @@ end
 
 -- Plugin definition
 return {
-  setup = function()
-    return {
-      "neovim/nvim-lspconfig",
-      dependencies = {
-        "folke/neodev.nvim",
-      },
-      opts = {
-        servers = {
-          lua_ls = require("plugins.lsp.luals"),
-          gopls = require("plugins.lsp.gopls"),
-        },
-        ignore_formatting = {
-          lua_ls = true,
-        },
-      },
-      config = lsp_config,
-    }
-  end
+  "neovim/nvim-lspconfig",
+  dependencies = {
+    "folke/neodev.nvim",
+  },
+  opts = {
+    servers = {
+      lua_ls = require("plugins.lsp.luals"),
+      gopls = require("plugins.lsp.gopls"),
+    },
+    ignore_formatting = {
+      lua_ls = true,
+    },
+  },
+  config = lsp_config,
 }

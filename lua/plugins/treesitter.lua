@@ -33,11 +33,7 @@ local treesitter_config = function(_, _)
 end
 
 return {
-  setup = function()
-    return {
-      "nvim-treesitter/nvim-treesitter",
-      build = ":TSUpdate",
-      config = treesitter_config,
-    }
-  end,
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  config = treesitter_config,
 }
