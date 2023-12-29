@@ -1,9 +1,9 @@
 -- Include base options
-require('poli.options')
+require('otrave.options')
 
 -- Include keymaps
-require('poli.keymaps')
+require('otrave.keymaps')
 
 -- Lazy plugin manager configuration
-require('poli.lazy')
+require('otrave.lazy')
 

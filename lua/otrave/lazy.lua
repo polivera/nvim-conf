@@ -14,6 +14,7 @@ local plugin_list = {
   require("plugins.lualine"),
   require("plugins.gitsigns"),
   require("plugins.neotree"),
+  require("plugins.fidget"),
 }
 
 local opts = {}

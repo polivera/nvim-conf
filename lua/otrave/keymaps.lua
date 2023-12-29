@@ -4,7 +4,7 @@
 --
 -- --------------------------------------------------------------------------------------------------------------------
 
--- vim.keymap.set(mode, shortcut, action_func, funcOpts)
+-- Default keymaps opts
 local opts = { noremap = true, silent = true }
 
 -- Set Leader Key
@@ -24,7 +24,7 @@ vim.keymap.set("n", "<Tab>", ":bnext<cr>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprev<cr>", opts)
 
 -- Cancel with ctrl + g
-vim.keymap.set({"i", "v"}, "<C-g>", "<esc>", opts)
+vim.keymap.set({"i", "v", "x"}, "<C-g>", "<esc>", opts)
 
 -- Stay in visual mode after move code
 vim.keymap.set("v", "<", "<gv", opts)
@@ -37,9 +37,6 @@ vim.keymap.set("n", ">", ">>", opts)
 -- Move text up and down
 vim.keymap.set("v", "<C-j>", ":m .+1<cr>==", opts)
 vim.keymap.set("v", "<C-k>", ":m .-2<cr>==", opts)
-
--- Cancel visual mode
-vim.keymap.set("v", "<C-g>", "<esc>", opts)
 
 -- Splits Management --
 vim.keymap.set("n", "<leader>x", "<cmd>split<cr>", opts)

@@ -78,6 +78,7 @@ return {
     servers = {
       lua_ls = require("plugins.lsp.luals"),
       gopls = require("plugins.lsp.gopls"),
+      phpactor = require("plugins.lsp.phpactor"),
     },
     ignore_formatting = {
       lua_ls = true,
