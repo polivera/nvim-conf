@@ -2,6 +2,16 @@ local OC = {}
 
 local configs = nil
 
+local loadconfig = function(configname, default_config)
+	if configs ~= nil then
+		local config = configs[configname] or nil
+		if config ~= nil then
+			return config()
+		end
+	end
+	return default_config
+end
+
 OC.setup = function(config_file_name)
 	config_file_name = config_file_name or ".orticonf.lua"
 
@@ -13,8 +23,17 @@ OC.setup = function(config_file_name)
 		print(".orticonf.lua file not found")
 		return
 	end
+end
 
-	print(configs["ortiexec"]()["*.go"][1])
+OC.setupplugin = function(name, default_config)
+	-- Check plugin really exist
+	local ok, plug = pcall(require, name)
+	if not ok then
+		print(string.format("Plugin %s does not exist", name))
+		return
+	end
+	-- Check we have config for the plugin or we send the detault
+	plug.setup(loadconfig(name, default_config))
 end
 
 return OC

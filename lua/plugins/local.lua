@@ -10,10 +10,11 @@ return {
 				dir = vim.fn.stdpath("config") .. "/lua/custom/orticonf.nvim",
 			},
 		},
-		config = function()
-			require("orticonf").setup()
 
-			require("ortiexec").setup({
+		config = function()
+			local orticonf = require("orticonf")
+			orticonf.setup()
+			orticonf.setupplugin("ortiexec", {
 				["*.lua"] = {
 					"stylua ###file###",
 				},
