@@ -3,10 +3,11 @@ local OC = {}
 local configs = nil
 
 local loadconfig = function(configname, default_config)
+	-- TODO: I should merge the configurations rather than set one or the other
 	if configs ~= nil then
 		local config = configs[configname] or nil
 		if config ~= nil then
-			return config()
+			return vim.tbl_deep_extend("keep", config(), default_config)
 		end
 	end
 	return default_config
