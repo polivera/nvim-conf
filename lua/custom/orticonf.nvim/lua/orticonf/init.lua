@@ -2,16 +2,22 @@ local OC = {}
 
 local configs = nil
 
+---Load configuration
+---@param configname string
+---@param default_config table
+---@return table
 local loadconfig = function(configname, default_config)
 	if configs ~= nil then
 		local config = configs[configname] or nil
 		if config ~= nil then
-			return config()
+			return vim.tbl_deep_extend("keep", config(), default_config)
 		end
 	end
 	return default_config
 end
 
+---Setup configuration file support
+---@param config_file_name string
 OC.setup = function(config_file_name)
 	config_file_name = config_file_name or ".orticonf.lua"
 
@@ -25,6 +31,9 @@ OC.setup = function(config_file_name)
 	end
 end
 
+---Load the given configuration
+---@param name string
+---@param default_config table
 OC.setupplugin = function(name, default_config)
 	-- Check plugin really exist
 	local ok, plug = pcall(require, name)
