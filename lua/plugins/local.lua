@@ -1,28 +1,46 @@
 -- --------------------------------------------------------------------------------------------------------------------
 -- List of local plugins
 -- --------------------------------------------------------------------------------------------------------------------
-return {
-	-- I think I should rename this to formatter
-	{
-		dir = vim.fn.stdpath("config") .. "/lua/custom/ortiexec.nvim",
-		dependencies = {
-			{
-				dir = vim.fn.stdpath("config") .. "/lua/custom/orticonf.nvim",
-			},
-		},
 
-		config = function()
-			local orticonf = require("orticonf")
-			orticonf.setup()
-			orticonf.setupplugin("ortiexec", {
-				["*.lua"] = {
-					"stylua ###file###",
-				},
-				["*.go"] = {
-					"gofmt -w ###file###",
-					"gosimports -w ###file###",
-				},
-			})
-		end,
+local ortiexec_setup = function()
+	local orticonf = require("orticonf")
+	orticonf.setup()
+	orticonf.loadplugin("ortiexec", {
+		["*.lua"] = {
+			"stylua ###file###",
+		},
+		["*.go"] = {
+			"gofmt -w ###file###",
+			"gosimports -w ###file###",
+		},
+	})
+end
+
+local ortitest_setup = function()
+	local orticonf = require("orticonf")
+	orticonf.setup()
+	orticonf.loadplugin("ortitest", {})
+end
+
+return {
+	-- Ortiexec
+	{
+		"polivera/ortiexec.nvim",
+		dev = true,
+		dependencies = {
+			{ "polivera/orticonf.nvim", dev = true },
+			{ "polivera/ortidebug.nvim", dev = true },
+		},
+		config = ortiexec_setup,
+	},
+	-- Ortitest
+	{
+		"polivera/ortitest.nvim",
+		dev = true,
+		dependencies = {
+			{ "polivera/orticonf.nvim", dev = true },
+			{ "polivera/ortidebug.nvim", dev = true },
+		},
+		config = ortitest_setup,
 	},
 }

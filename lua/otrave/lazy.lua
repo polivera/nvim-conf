@@ -18,7 +18,12 @@ local plugin_list = {
 	require("plugins.local"),
 }
 
-local opts = {}
+local opts = {
+	dev = {
+		path = "~/Projects/Personal/nvim-conf/lua/custom/",
+		fallback = false,
+	},
+}
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
