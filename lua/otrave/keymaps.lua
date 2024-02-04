@@ -59,6 +59,9 @@ vim.keymap.set({ "n", "x" }, "X", '"_X', opts)
 -- --------------------------------------------------------------------------------------------------------------------
 -- PLUGINS KEYMAPS
 
+-- Personal Debugging
+vim.keymap.set("n", "<leader>ds", "<cmd>source %<cr>", opts)
+
 -- Telescope keybinding
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
 vim.keymap.set("n", "<leader>fl", "<cmd>Telescope find_files<cr>", opts)

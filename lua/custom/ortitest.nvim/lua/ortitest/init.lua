@@ -24,9 +24,7 @@ M.setup = function(opts)
 	end
 
 	local runner = conf_map[curr_file_ext]:new()
-	local asdf = runner:find_test_files()
-	print("== about to print result ==")
-	vim.g.ortidebug.debug_print(asdf)
+	runner:find_test_files()
 
 	-- Here we select the config based on the file type
 end
