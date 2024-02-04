@@ -4,16 +4,16 @@ end
 
 local util = require("ortitest.util")
 
-local defaultSourceFile = util.getcurrentfilename()
-local defaultSourcePath = util.getcurrentfilepath()
+local defaultSourceFile = util.get_current_file_name()
+local defaultSourcePath = util.get_current_file_path()
 local defaultTestPath = defaultSourcePath
 local defaultTestPattern = ".*.spec.lua"
 
 ---@class GoConf
----@field sourcePath string
----@field sourceFile string
----@field testPath string
----@field testPattern string
+---@field source_file_path string
+---@field source_file_name string
+---@field test_file_path string
+---@field test_file_pattern string
 local GoConf = {}
 
 ---Create a new GoConf object
@@ -34,7 +34,11 @@ end
 
 ---Find test file
 function GoConf:findtestfile()
-	print(util.scandir(self.testPath))
+	for _, line in pairs(util.scan_dir(self.test_file_path)) do
+		if string.match(line, string.format("%s%s", self.source_file_name, self.test_file_pattern)) then
+			print(line)
+		end
+	end
 end
 
 local foo = GoConf:new()
