@@ -8,7 +8,7 @@ U.get_current_file_name = function()
 	return vim.api.nvim_buf_get_name(CURRENT_BUFF_ID):match("^.+/(.+)[.].*$")
 end
 
-U.get_file_extension = function()
+U.get_current_file_extension = function()
 	return vim.api.nvim_buf_get_name(CURRENT_BUFF_ID):match("^.+(%..+)$")
 end
 

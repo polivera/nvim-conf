@@ -1,5 +1,5 @@
 if vim.g.ortidebugmode then
-	vim.g.ortidebug.reloadmodule("ortitest.util")
+	vim.g.ortidebug.reload_module("ortitest.util")
 end
 
 local util = require("ortitest.util")
