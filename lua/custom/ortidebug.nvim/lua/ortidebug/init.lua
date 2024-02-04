@@ -9,10 +9,16 @@ M.reload_module = function(modulename)
 	end
 end
 
-M.debug_print = function(param)
+M.debug_print = function(param, depth)
+	depth = depth or 0
+	if depth > 10 then
+		print("max recursion exceeded")
+		return
+	end
+	depth = depth + 1
 	for key, val in pairs(param) do
 		if type(val) == "table" then
-			return M.debug_print(val)
+			return M.debug_print(val, depth)
 		end
 		print(string.format("%s: %s", key, val))
 	end

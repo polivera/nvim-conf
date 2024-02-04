@@ -33,7 +33,6 @@ function CommonConf:create(o)
 end
 
 function CommonConf:set_params(o)
-	print("call set params")
 	self.source_file_path = o.source_file_path
 	self.source_file_name = o.source_file_name
 	self.test_file_path = o.test_file_path
@@ -42,12 +41,14 @@ end
 
 ---Find test file
 function CommonConf:find_test_files()
-	print(self.test_file_path, self.source_file_name, self.test_file_pattern)
 	local file_list = find_test_files(self.test_file_path, self.source_file_name, self.test_file_pattern)
-	if #file_list > 0 then
-		vim.fn.setqflist(file_list)
-		vim.cmd.copen()
+	if #file_list == 0 then
+		print(string.format("Can't find test files for %s", self.source_file_name))
+		return
 	end
+	-- TODO: If the length is 1 open a new buffer
+	vim.fn.setqflist(file_list)
+	vim.cmd.copen()
 end
 
 return CommonConf
