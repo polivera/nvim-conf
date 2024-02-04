@@ -1,4 +1,4 @@
-if vim.g.ortidebugmode then
+if vim.g.ortidebug_mode then
 	vim.g.ortidebug.reload_module("ortitest.util")
 end
 
@@ -24,6 +24,5 @@ end
 function GoConf:findtestfile() end
 
 local foo = GoConf.new()
-print(foo.testPath)
 
 return GoConf

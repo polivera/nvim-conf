@@ -1,20 +1,19 @@
-if vim.g.ortidebugmode then
+if vim.g.ortidebug_mode then
 	vim.g.ortidebug.reload_module("ortitest.util")
-	vim.g.ortidebug.reload_module("ortitest.go")
-	vim.g.ortidebug.reload_module("ortitest.lua")
+	vim.g.ortidebug.reload_module("ortitest.configs.go")
+	vim.g.ortidebug.reload_module("ortitest.configs.lua")
 end
 
 local util = require("ortitest.util")
-local M = {}
-
 local conf_map = {
 	[".go"] = require("ortitest.configs.go"),
 	[".lua"] = require("ortitest.configs.lua"),
 }
-local pepe = require("ortitest.configs.lua")
+
+-- Return module
+local M = {}
 
 M.setup = function(opts)
-	print(pepe:new())
 	opts = opts or {}
 
 	local curr_file_ext = util.get_current_file_extension()
@@ -25,8 +24,9 @@ M.setup = function(opts)
 	end
 
 	local runner = conf_map[curr_file_ext]:new()
-	-- local runner = conf_map[curr_file_ext]:new()
-	vim.g.ortidebug.debug_print(runner:find_test_files())
+	local asdf = runner:find_test_files()
+	print("== about to print result ==")
+	vim.g.ortidebug.debug_print(asdf)
 
 	-- Here we select the config based on the file type
 end

@@ -1,1 +1,1 @@
-vim.g.ortidebugmode, vim.g.ortidebug = pcall(require, "ortidebug")
+vim.g.ortidebug_mode, vim.g.ortidebug = pcall(require, "ortidebug")
