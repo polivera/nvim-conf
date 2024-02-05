@@ -46,7 +46,10 @@ function CommonConf:find_test_files()
 		print(string.format("Can't find test files for %s", self.source_file_name))
 		return
 	end
-	-- TODO: If the length is 1 open a new buffer
+	if #file_list == 1 then
+		vim.cmd(string.format("edit %s", file_list[1].filename))
+		return
+	end
 	vim.fn.setqflist(file_list)
 	vim.cmd.copen()
 end
