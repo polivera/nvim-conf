@@ -22,6 +22,17 @@ U.get_current_file_path = function()
 	return vim.api.nvim_buf_get_name(CURRENT_BUFF_ID):match("(.*/)")
 end
 
+---Get git root path
+---@return string
+U.get_git_root = function()
+	-- git rev-parse --show-toplevel
+	local fl = assert(io.popen("git rev-parse --show-toplevel", "r"))
+	local res = assert(fl:read("*a"))
+	fl:close()
+
+	return res
+end
+
 ---Return a list of the files in the <path> directory
 ---@param path string
 ---@return table
@@ -35,5 +46,7 @@ U.scan_dir = function(path)
 	filelist:close()
 	return result
 end
+
+U.get_git_root()
 
 return U

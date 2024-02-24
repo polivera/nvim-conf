@@ -83,6 +83,17 @@ function CommonConf:run_test_file()
 		print("Current file is not a test file")
 	end
 
+	print(
+		"1",
+		self.unit_test_command,
+		"2",
+		self:get_test_package(),
+		"3",
+		util.get_current_file_name(),
+		"4",
+		util.get_current_file_name_and_extension()
+	)
+
 	local foo = build_test_command(
 		self.unit_test_command,
 		self:get_test_package(),

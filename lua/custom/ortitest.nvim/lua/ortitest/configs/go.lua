@@ -25,4 +25,11 @@ function GoConf:new(o)
 	return self
 end
 
+---Get test package path
+---@return string
+function GoConf:get_test_package()
+	print("this is something odd")
+	return ""
+end
+
 return GoConf
