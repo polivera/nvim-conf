@@ -82,16 +82,16 @@ function CommonConf:run_test_file()
 	if not string.match(current_file, self.test_file_pattern) then
 		print("Current file is not a test file")
 	end
-	print("This is working but I did not debug it :)")
-	print(
-		build_test_command(
-			self.unit_test_command,
-			self:get_test_package(),
-			util.get_current_file_path(),
-			util.get_current_file_name_and_extension(),
-			""
-		)
+
+	local foo = build_test_command(
+		self.unit_test_command,
+		self:get_test_package(),
+		util.get_current_file_path(),
+		util.get_current_file_name_and_extension(),
+		""
 	)
+
+	print(foo)
 end
 
 return CommonConf

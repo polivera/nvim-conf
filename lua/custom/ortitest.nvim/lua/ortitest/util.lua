@@ -13,7 +13,7 @@ U.get_current_file_extension = function()
 end
 
 U.get_current_file_name_and_extension = function()
-	return vim.api.nvim_buf_get_name(CURRENT_BUFF_ID):match("^.+/(.+)$")
+	return vim.api.nvim_buf_get_name(CURRENT_BUFF_ID)
 end
 
 ---Get current file path
