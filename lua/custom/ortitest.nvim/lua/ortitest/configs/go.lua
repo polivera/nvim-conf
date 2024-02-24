@@ -33,3 +33,7 @@ function GoConf:get_test_package()
 end
 
 return GoConf
+
+-- (function_declaration
+--   name: (identifier) @func_name
+--   ) @name

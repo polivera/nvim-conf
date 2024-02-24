@@ -17,8 +17,6 @@ local M = {}
 
 local get_runner = function()
 	local curr_file_ext = util.get_current_file_extension()
-	print("current file extension")
-	print(curr_file_ext)
 	if not runners[curr_file_ext] then
 		if not conf_map[curr_file_ext] then
 			print(string.format("extension %s not found", curr_file_ext))
