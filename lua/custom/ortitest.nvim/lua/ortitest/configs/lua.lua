@@ -1,9 +1,9 @@
 if vim.g.ortidebug_mode then
-	vim.g.ortidebug.reload_module("ortitest.util")
+	vim.g.ortidebug.reload_module("ortiutils.dir")
 	vim.g.ortidebug.reload_module("ortitest.configs.common")
 end
 
-local util = require("ortitest.util")
+local util = require("ortiutils.dir")
 local common = require("ortitest.configs.common")
 
 local default_test_pattern = ".*.spec.lua"

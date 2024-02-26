@@ -1,10 +1,10 @@
 if vim.g.ortidebug_mode then
-	vim.g.ortidebug.reload_module("ortitest.util")
+	vim.g.ortidebug.reload_module("ortiutils.dir")
 	vim.g.ortidebug.reload_module("ortitest.configs.go")
 	vim.g.ortidebug.reload_module("ortitest.configs.lua")
 end
 
-local util = require("ortitest.util")
+local util = require("ortiutils.dir")
 local conf_map = {
 	[".go"] = require("ortitest.configs.go"),
 	[".lua"] = require("ortitest.configs.lua"),
@@ -48,7 +48,7 @@ M.setup = function(opts)
 	opts = opts or {}
 
 	vim.api.nvim_create_user_command("OrtiTestFind", find_test_files, {})
-	vim.api.nvim_create_user_command("OrtiTestRunFile", run_test_file, {})
+	vim.api.nvim_create_user_command("OrtiTestRun", run_test_file, {})
 end
 
 M.setup()

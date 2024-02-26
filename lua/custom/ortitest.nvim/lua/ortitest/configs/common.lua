@@ -1,8 +1,10 @@
 if vim.g.ortidebug_mode then
-	vim.g.ortidebug.reload_module("ortitest.util")
+	vim.g.ortidebug.reload_module("ortiutils.dir")
+	vim.g.ortidebug.reload_module("ortiutils.telescope")
 end
 
-local util = require("ortitest.util")
+local util = require("ortiutils.dir")
+local util_telescope = require("ortiutils.telescope")
 
 --- Const like
 local PATH_WILDCARD = "###path###"
@@ -77,32 +79,43 @@ function CommonConf:find_test_files()
 	vim.cmd.copen()
 end
 
+function CommonConf:get_test_name()
+	-- TODO: Fix this bro
+	print("bro you should not be here")
+	return ""
+end
+
+function CommonConf:get_test_methods_list()
+	-- TODO: Fix this
+	print("you should not be here")
+	return {}
+end
+
 function CommonConf:run_test_file()
 	local current_file = util.get_current_file_name_and_extension()
 	if not string.match(current_file, self.test_file_pattern) then
 		print("Current file is not a test file")
 	end
 
-	print(
-		"1",
-		self.unit_test_command,
-		"2",
-		self:get_test_package(),
-		"3",
-		util.get_current_file_name(),
-		"4",
-		util.get_current_file_name_and_extension()
-	)
+	local list = self:get_test_methods_list()
 
-	local foo = build_test_command(
-		self.unit_test_command,
-		self:get_test_package(),
-		util.get_current_file_path(),
-		util.get_current_file_name_and_extension(),
-		""
-	)
+	util_telescope
+		.make_list(current_file .. " tests", list, function(selected)
+			local foo = build_test_command(
+				self.unit_test_command,
+				self:get_test_package(),
+				util.get_current_file_path(),
+				current_file,
+				selected
+			)
+			print(foo)
+		end)
+		.call({})
+end
 
-	print(foo)
+function CommonConf:run_last_test()
+	-- TODO: complete this
+	return ""
 end
 
 return CommonConf

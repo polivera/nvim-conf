@@ -29,6 +29,7 @@ return {
 		dev = true,
 		dependencies = {
 			{ "polivera/orticonf.nvim", dev = true },
+			{ "polivera/ortiutils.nvim", dev = true },
 			{ "polivera/ortidebug.nvim", dev = true },
 		},
 		config = ortiexec_setup,
@@ -39,6 +40,7 @@ return {
 		dev = true,
 		dependencies = {
 			{ "polivera/orticonf.nvim", dev = true },
+			{ "polivera/ortiutils.nvim", dev = true },
 			{ "polivera/ortidebug.nvim", dev = true },
 		},
 		config = ortitest_setup,

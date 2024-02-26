@@ -10,6 +10,10 @@ M.reload_module = function(modulename)
 end
 
 M.debug_print = function(param, depth)
+	if not param then
+		print("nothing to print here")
+		return
+	end
 	depth = depth or 0
 	if depth > 10 then
 		print("max recursion exceeded")
