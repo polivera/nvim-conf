@@ -35,7 +35,7 @@ function GoConf:get_test_package()
 end
 
 function GoConf:get_test_methods_list()
-	bufnr = bufnr or vim.api.nvim_get_current_buf()
+	local bufnr = vim.api.nvim_get_current_buf()
 	local ts_sql = vim.treesitter.query.parse(
 		"go",
 		[[

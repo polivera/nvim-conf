@@ -1,10 +1,17 @@
 if vim.g.ortidebug_mode then
 	vim.g.ortidebug.reload_module("ortiutils.dir")
 	vim.g.ortidebug.reload_module("ortiutils.telescope")
+	vim.g.ortidebug.reload_module("ortiutils.buffer")
 end
 
 local util = require("ortiutils.dir")
 local util_telescope = require("ortiutils.telescope")
+local util_buffer = require("ortiutils.buffer")
+
+local test_buffer_pane = {
+	bufnr = -1,
+	windid = -1,
+}
 
 --- Const like
 local PATH_WILDCARD = "###path###"
@@ -19,19 +26,6 @@ local PACKAGE_WILDCARD = "###package###"
 ---@field test_file_pattern string
 ---@field unit_test_command string
 local CommonConf = {}
-
---
--- Private funcitons area
---
-local find_test_files = function(test_file_path, source_file_name, test_file_pattern)
-	local result = {}
-	for _, line in pairs(util.scan_dir(test_file_path)) do
-		if string.match(line, string.format("%s%s", source_file_name, test_file_pattern)) then
-			table.insert(result, { text = line, filename = test_file_path .. line })
-		end
-	end
-	return result
-end
 
 --
 -- Build the test command to execute
@@ -66,7 +60,14 @@ end
 
 ---Find test file
 function CommonConf:find_test_files()
-	local file_list = find_test_files(self.test_file_path, self.source_file_name, self.test_file_pattern)
+	local file_list = {}
+
+	for _, line in pairs(util.scan_dir(self.test_file_path)) do
+		if string.match(line, string.format("%s%s", self.source_file_name, self.test_file_pattern)) then
+			table.insert(file_list, { text = line, filename = self.test_file_path .. line })
+		end
+	end
+
 	if #file_list == 0 then
 		print(string.format("Can't find test files for %s", self.source_file_name))
 		return
@@ -99,18 +100,39 @@ function CommonConf:run_test_file()
 
 	local list = self:get_test_methods_list()
 
-	util_telescope
-		.make_list(current_file .. " tests", list, function(selected)
-			local foo = build_test_command(
-				self.unit_test_command,
-				self:get_test_package(),
-				util.get_current_file_path(),
-				current_file,
-				selected
-			)
-			print(foo)
-		end)
-		.call({})
+	util_telescope.make_list(current_file .. " tests", list, self:run_test(current_file)).call({})
+end
+
+function CommonConf:run_test(test_file)
+	local current_file_path = util.get_current_file_path()
+	local test_package = self:get_test_package()
+	local command_template = self.unit_test_command
+	return function(test_name)
+		print("Running Test Configuration")
+		print(vim.inspect(test_buffer_pane))
+		test_buffer_pane = util_buffer.new_vsplit_scratch(
+			"Running test for " .. test_name,
+			test_buffer_pane.bufnr,
+			test_buffer_pane.windid
+		)
+		local test_command = build_test_command(command_template, test_package, current_file_path, test_file, test_name)
+
+		print("got what I need")
+		print(vim.inspect(test_buffer_pane))
+
+		vim.fn.jobstart(test_command, {
+			stdout_buffered = true,
+			on_stdout = function(_, data)
+				util_buffer.append_content_to_buf(test_buffer_pane.bufnr, data or "")
+			end,
+			on_stderr = function(_, data)
+				util_buffer.append_content_to_buf(test_buffer_pane.bufnr, data or "")
+			end,
+			on_exit = function(_, _)
+				util_buffer.append_content_to_buf(test_buffer_pane.bufnr, "job complete")
+			end,
+		})
+	end
 end
 
 function CommonConf:run_last_test()
