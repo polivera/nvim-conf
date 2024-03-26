@@ -17,7 +17,7 @@ local loadconfig = function(configname, default_config)
 end
 
 ---Setup configuration file support
----@param config_file_name string
+---@param config_file_name ?string
 OC.setup = function(config_file_name)
 	config_file_name = config_file_name or ".orticonf.lua"
 
@@ -34,7 +34,7 @@ end
 ---Load the given configuration
 ---@param name string
 ---@param default_config table
-OC.setupplugin = function(name, default_config)
+OC.loadplugin = function(name, default_config)
 	-- Check plugin really exist
 	local ok, plug = pcall(require, name)
 	if not ok then
