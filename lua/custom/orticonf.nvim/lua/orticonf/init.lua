@@ -38,7 +38,6 @@ OC.loadplugin = function(name, default_config)
 	-- Check plugin really exist
 	local ok, plug = pcall(require, name)
 	if not ok then
-		print(string.format("Plugin %s does not exist", name))
 		return
 	end
 	-- Check we have config for the plugin or we send the detault

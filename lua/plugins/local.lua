@@ -2,10 +2,12 @@
 -- List of local plugins
 -- --------------------------------------------------------------------------------------------------------------------
 
+local orticonf_setup = function()
+	require("orticonf").setup()
+end
+
 local ortiexec_setup = function()
-	local orticonf = require("orticonf")
-	orticonf.setup()
-	orticonf.loadplugin("ortiexec", {
+	local conf = {
 		["*.lua"] = {
 			"stylua ###file###",
 		},
@@ -13,16 +15,25 @@ local ortiexec_setup = function()
 			"gofmt -w ###file###",
 			"gosimports -w ###file###",
 		},
-	})
+	}
+	require("orticonf").loadplugin("ortiexec", conf)
 end
 
 local ortitest_setup = function()
-	local orticonf = require("orticonf")
-	orticonf.setup()
-	orticonf.loadplugin("ortitest", {})
+	local conf = {}
+	require("orticonf").loadplugin("ortitest", conf)
 end
 
 return {
+	-- Orticonf
+	{
+		"polivera/orticonf.nvim",
+		dev = true,
+		dependencies = {
+			{ "polivera/ortiutils.nvim", dev = true },
+		},
+		config = orticonf_setup,
+	},
 	-- Ortiexec
 	{
 		"polivera/ortiexec.nvim",

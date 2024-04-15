@@ -4,9 +4,11 @@ local M = {}
 ---@param winid? integer
 ---@return boolean
 M.does_window_exist = function(winid)
+	print("param" .. winid)
 	if winid then
 		local win_list = vim.api.nvim_list_wins()
 		for _, val in ipairs(win_list) do
+			print(val)
 			if val == winid then
 				return true
 			end
@@ -47,9 +49,5 @@ M.append_content_to_buf = function(bufnr, content)
 	end
 	vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, content)
 end
-
--- 1354 1891
-
-print(M.does_window_exist(1891))
 
 return M
