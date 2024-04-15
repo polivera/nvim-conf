@@ -72,6 +72,10 @@ vim.keymap.set("n", "<leader>fu", "<cmd>Telescope buffers<cr>", opts)
 
 -- Neo tree
 vim.keymap.set("n", "<leader>\\", "<cmd>Neotree filesystem toggle<cr>", opts)
-vim.keymap.set("n", "<leader>tl", "<cmd>Neotree filesystem toggle reveal<cr>", opts)
-vim.keymap.set("n", "<leader>ts", "<cmd>Neotree git_status toggle<cr>", opts)
-vim.keymap.set("n", "<leader>tu", "<cmd>Neotree buffers toggle<cr>", opts)
+vim.keymap.set("n", "<leader>nl", "<cmd>Neotree filesystem toggle reveal<cr>", opts)
+vim.keymap.set("n", "<leader>ns", "<cmd>Neotree git_status toggle<cr>", opts)
+vim.keymap.set("n", "<leader>nu", "<cmd>Neotree buffers toggle<cr>", opts)
+
+-- Orti test
+vim.keymap.set("n", "<leader>tf", "<cmd>OrtiTestFind<cr>", opts)
+vim.keymap.set("n", "<leader>tr", "<cmd>OrtiTestRun<cr>", opts)

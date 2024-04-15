@@ -108,17 +108,16 @@ function CommonConf:run_test(test_file)
 	local test_package = self:get_test_package()
 	local command_template = self.unit_test_command
 	return function(test_name)
-		print("Running Test Configuration")
+		print("this is something")
 		print(vim.inspect(test_buffer_pane))
-		test_buffer_pane = util_buffer.new_vsplit_scratch(
+		local open_split = util_buffer.new_vsplit_scratch(
 			"Running test for " .. test_name,
 			test_buffer_pane.bufnr,
 			test_buffer_pane.windid
 		)
+		test_buffer_pane.bufnr = open_split.bufnr
+		test_buffer_pane.windid = open_split.windid
 		local test_command = build_test_command(command_template, test_package, current_file_path, test_file, test_name)
-
-		print("got what I need")
-		print(vim.inspect(test_buffer_pane))
 
 		vim.fn.jobstart(test_command, {
 			stdout_buffered = true,
