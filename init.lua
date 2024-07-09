@@ -1,5 +1,8 @@
 -- Load options
-require("options")
+require("configs.options")
 
 -- Load keymaps
-require("keymaps")
+require("configs.keymaps")
+
+-- Lazy plugin manager
+require("configs.lazy")
