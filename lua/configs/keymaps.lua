@@ -43,3 +43,15 @@ vim.keymap.set({ "n", "x" }, "C", '"_C', opts)
 vim.keymap.set({ "n", "x" }, "x", '"_x', opts)
 vim.keymap.set({ "n", "x" }, "X", '"_X', opts)
 
+--
+-- PLUGINS
+--
+
+-- Telescope
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<leader>fl", "<cmd>Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<leader>fj", "<cmd>Telescope live_grep<cr>", opts)
+vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+vim.keymap.set("n", "<leader>fm", "<cmd>Telescope commands<cr>", opts)
+vim.keymap.set("n", "<leader>fu", "<cmd>Telescope buffers<cr>", opts)
+

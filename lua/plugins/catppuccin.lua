@@ -6,7 +6,11 @@ return {
     config = function() 
         require("catppuccin").setup({
             flavor = "mocha",
-            integrations = {},
+            integrations = {
+                telescope = {
+                    enabled =  true,
+                },
+            },
         })
         vim.cmd([[colorscheme catppuccin]])
     end,
