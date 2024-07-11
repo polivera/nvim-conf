@@ -32,6 +32,9 @@ vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("n", "<", "<<", opts)
 vim.keymap.set("n", ">", ">>", opts)
 
+-- Activate sessionizer
+vim.keymap.set("n", "<C-p>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>", opts)
+
 -- Make m yank and delete, d just delete and c change without yank
 vim.keymap.set({ "n", "x" }, "m", "d", opts)
 vim.keymap.set({ "n", "x" }, "M", "D", opts)
