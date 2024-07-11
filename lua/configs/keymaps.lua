@@ -54,4 +54,3 @@ vim.keymap.set("n", "<leader>fj", "<cmd>Telescope live_grep<cr>", opts)
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 vim.keymap.set("n", "<leader>fm", "<cmd>Telescope commands<cr>", opts)
 vim.keymap.set("n", "<leader>fu", "<cmd>Telescope buffers<cr>", opts)
-

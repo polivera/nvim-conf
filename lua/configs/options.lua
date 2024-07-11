@@ -36,9 +36,9 @@ local options = {
 	scrolloff = 8, -- is one of my fav
 	sidescrolloff = 8,
 	guifont = "monospace:h17", -- the font used in graphical neovim applications
+	exrc = true, -- Allow to create a .nvim.lua file per project
 }
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-
