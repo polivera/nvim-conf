@@ -179,3 +179,5 @@ require("oil").setup({
 		border = "rounded",
 	},
 })
+
+vim.keymap.set("n", "<leader>\\", "<cmd>Oil<cr>", { silent = true, desc = "Open Oil" })

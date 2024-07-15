@@ -20,20 +20,28 @@ local servers = {
 		},
 	},
 	lua_ls = {
-		-- cmd = {...},
-		-- filetypes = { ...},
-		-- capabilities = {},
 		settings = {
 			Lua = {
 				completion = {
 					callSnippet = "Replace",
 				},
-				-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-				-- diagnostics = { disable = { 'missing-fields' } },
 			},
 		},
 	},
-	cssls = {},
+	cssls = {
+		filetypes = { "scss", "less", "css" },
+	},
+	html = {
+		init_options = {
+			configurationSection = { "html", "css", "javascript" },
+			embeddedLanguages = {
+				css = true,
+				javascript = true,
+			},
+			provideFormatter = false,
+		},
+	},
+	tsserver = {},
 }
 
 -- Add more tools for Mason to install
