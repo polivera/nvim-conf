@@ -4,6 +4,7 @@ Mod.load = function(opts)
 	local conf = {
 		["*.lua"] = { "stylua ###file###" },
 		["*.go"] = { "gosimports -w ###file###" },
+		["*.templ"] = { "templ fmt ###file### && templ generate" },
 		["*.json"] = { "prettier -w ###file###" },
 		["*.js"] = { "prettier -w ###file###" },
 		["*.css"] = { "prettier -w ###file###" },

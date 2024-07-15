@@ -19,6 +19,7 @@ local servers = {
 			},
 		},
 	},
+	templ = {},
 	lua_ls = {
 		settings = {
 			Lua = {
