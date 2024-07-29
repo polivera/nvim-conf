@@ -24,6 +24,13 @@ M.get_buffer_info = function(buffer_name)
 	return vim.fn.getbufinfo(buffer_name)[1]
 end
 
+---Get current buffnr
+---(another function that I never remember)
+---@return integer
+M.get_current_buffer_number = function()
+	return vim.api.nvim_get_current_buf()
+end
+
 ---Get new buffer or get existing one if buffer with buffer_name exist
 ---@param buf_name string
 ---@param is_scratch boolean
@@ -79,6 +86,13 @@ M.vscratch = function(content, buffer_name, winid, show_in_list)
 	M.put_content_on_buffer(content, bufnr, true)
 	vim.api.nvim_win_set_buf(winid, bufnr)
 	return winid, bufnr
+end
+
+---Get the buffer file type
+---(Yes, is a one liner, but I can never remember it)
+---@return string
+M.get_file_type = function()
+	return vim.bo.filetype
 end
 
 return M
