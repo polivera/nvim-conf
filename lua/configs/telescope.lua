@@ -13,10 +13,6 @@ local extensions = {
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 		}
 	end,
-
-	["ui-select"] = function(_)
-		return require("telescope.themes").get_dropdown({})
-	end,
 }
 
 local telescope = require("telescope")
@@ -89,6 +85,8 @@ local telescope_settings = {
 		},
 		selection_strategy = "reset",
 		sorting_strategy = "ascending",
+		file_sorter = require("telescope.sorters").get_fzy_sorter,
+		generic_sorter = require("telescope.sorters").get_fzy_sorter,
 		-- Other --------------------------------------------
 		file_ignore_patterns = ignore_patterns,
 	},
@@ -109,10 +107,7 @@ end
 telescope.setup(telescope_settings)
 
 for ext_name, _ in pairs(extensions) do
-	local ok, _ = pcall(require, ext_name)
-	if ok then
-		telescope.load_extension(ext_name)
-	end
+	telescope.load_extension(ext_name)
 end
 
 -- Keymaps

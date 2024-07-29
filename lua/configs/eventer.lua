@@ -2,6 +2,7 @@ local Mod = {}
 
 Mod.load = function(opts)
 	local conf = {
+		-- TODO: I should do a merge here instead of replacing
 		["*.lua"] = { "stylua ###file###" },
 		["*.go"] = { "gosimports -w ###file###" },
 		["*.templ"] = { "templ fmt ###file### && templ generate" },
@@ -16,3 +17,4 @@ Mod.load = function(opts)
 end
 
 return Mod
+-- it works!!!

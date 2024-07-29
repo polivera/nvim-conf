@@ -4,3 +4,4 @@ require("configs.eventer").load({
 		"echo '-- it works!!!' >> ###file###",
 	},
 })
+-- it works!!!

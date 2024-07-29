@@ -1,5 +1,13 @@
 local neogit = require("neogit")
-neogit.setup({})
+neogit.setup({
+	commit_editor = {
+		kind = "tab",
+		staged_diff_split_kind = "vsplit",
+	},
+	integrations = {
+		telescope = true,
+	},
+})
 
 local opts = { noremap = true, silent = true }
 

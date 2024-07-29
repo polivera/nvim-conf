@@ -12,6 +12,7 @@ vim.g.maplocalleader = " "
 
 -- Save
 vim.keymap.set("n", "<leader>w", ":w<cr>", opts)
+vim.keymap.set("n", "<C-s>s", ":w<cr>", opts)
 
 -- To upper / to lower
 vim.keymap.set({ "n", "v" }, "tu", "gU", opts)
@@ -20,6 +21,7 @@ vim.keymap.set({ "n", "v" }, "tl", "gu", opts)
 -- Navigate Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<cr>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprev<cr>", opts)
+vim.keymap.set("n", "<leader>q", ":bw<cr>", opts)
 
 -- Cancel with ctrl + g
 vim.keymap.set({ "i", "v", "x" }, "<C-g>", "<esc>", opts)
