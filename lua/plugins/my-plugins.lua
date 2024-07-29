@@ -6,4 +6,8 @@ return {
 			require("configs.eventer").load()
 		end,
 	},
+	{
+		"xapitan/helpoga.nvim",
+		dev = true,
+	},
 }
