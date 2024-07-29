@@ -15,3 +15,14 @@ This should do:
 - Run immediate test
 - Run all tests in file
 --]]
+
+local Mod = {}
+
+local opts = {
+	["*.go"] = {
+		test_cmd = "go test",
+		test_cmd_arts = "-tags=unit,integration,e2e",
+	},
+}
+
+return Mod
