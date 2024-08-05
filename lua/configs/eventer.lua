@@ -12,6 +12,7 @@ Mod.load = function(opts)
 		["*.scss"] = { "prettier -w ###file###" },
 		["*.html"] = { "prettier -w ###file###" },
 		["*.yaml"] = { "prettier -w ###file###" },
+		["*.sh"] = { "shfmt -l -w ###file###" },
 	}
 	require("eventer").setup(opts or conf)
 end
