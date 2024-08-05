@@ -44,6 +44,7 @@ local servers = {
 	},
 	tsserver = {},
 	phpactor = {},
+	bashls = {},
 }
 
 -- Add more tools for Mason to install

@@ -1,5 +1,6 @@
 if os.getenv("XAP_DEBUG") == "true" then
 	package.loaded["helpoga.buffer"] = nil
+	package.loaded["helpoga.treesitter"] = nil
 end
 --[[
 Testonga init
@@ -45,6 +46,7 @@ Query 2:
 --]]
 
 local buf_helper = require("helpoga.buffer")
+local treesit_helper = require("helpoga.treesitter")
 local Mod = {}
 
 local opts = {
@@ -71,6 +73,11 @@ local opts = {
 	},
 }
 
-print(vim.api.nvim_get_current_buf())
+local function leteste()
+	local res = treesit_helper.exec_query(206, "go", opts["go"].test_cmd_arts)
+	print(vim.inspect(res))
+end
+
+vim.api.nvim_create_user_command("OrtiTestFind", leteste, {})
 
 return Mod
