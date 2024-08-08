@@ -60,26 +60,30 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		-- Jump to the definition of the word under your cursor.
-		map("<leader>ld", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+		map("<leader>ld", require("telescope.builtin").lsp_definitions, "Go to definition")
 		-- Find references for the word under your cursor.
-		map("<leader>lr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+		map("<leader>lr", require("telescope.builtin").lsp_references, "Go to reference")
 		-- Jump to the implementation of the word under your cursor.
-		map("<leader>li", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+		map("<leader>li", require("telescope.builtin").lsp_implementations, "Go to implementation")
 		-- Jump to the type of the word under your cursor.
-		map("<leader>lt", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+		map("<leader>lt", require("telescope.builtin").lsp_type_definitions, "Type definition")
 		-- Fuzzy find all the symbols in your current document.
-		map("<leader>ls", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+		map("<leader>ls", require("telescope.builtin").lsp_document_symbols, "Document symbol")
 		-- Fuzzy find all the symbols in your current workspace.
-		map("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+		map("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Dynamic workspace symbols")
 		-- Rename the variable under your cursor.
-		map("<leader>ln", vim.lsp.buf.rename, "[R]e[n]ame")
+		map("<leader>ln", vim.lsp.buf.rename, "Rename")
 		-- Execute a code action, usually your cursor needs to be on top of an error
-		map("<leader>la", vim.lsp.buf.code_action, "[C]ode [A]ction")
+		map("<leader>la", vim.lsp.buf.code_action, "Code actions")
 		-- Opens a popup that displays documentation about the word under your cursor
-		map("<leader>lk", vim.lsp.buf.hover, "Hover Documentation")
+		map("<leader>lk", vim.lsp.buf.hover, "Show documentation")
 		-- WARN: This is not Goto Definition, this is Goto Declaration.
 		--  For example, in C this would take you to the header.
-		map("<leader>lc", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+		map("<leader>lc", vim.lsp.buf.declaration, "Go to declaration")
+		-- Show line diagnostics
+		map("<leader>le", function()
+			vim.diagnostic.open_float({ scope = "line" })
+		end, "Show line diagnostics")
 
 		-- The following two autocommands are used to highlight references of the
 		-- word under your cursor when your cursor rests there for a little while.
@@ -139,7 +143,9 @@ require("mason").setup()
 
 -- You can add other tools here that you want Mason to install
 -- for you, so that they are available from within Neovim.
-local ensure_installed = vim.tbl_keys(servers or {})
+-- local ensure_installed = vim.tbl_keys(servers or {})
+-- or
+local ensure_installed = {}
 vim.list_extend(ensure_installed, other_tools)
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

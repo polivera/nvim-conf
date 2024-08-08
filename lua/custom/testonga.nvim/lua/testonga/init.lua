@@ -19,33 +19,11 @@ This should do:
 - Run all tests in file
 --]]
 
---[[
-Query 2:
-(
- [
-    (function_declaration 
-      
-        name: (identifier) @func-name
-        )
-
-    (expression_statement
-      (call_expression
-                function: (selector_expression
-                    field: (field_identifier) @test-func)
-                arguments: (argument_list
-                             (interpreted_string_literal) @test-name)
-                )
-      )
-
-    (#match? @test-func "Run")
-    ]
-) 
-
-
---]]
-
 local buf_helper = require("helpoga.buffer")
+local ts_helper = require("helpoga.treesitter")
 local Mod = {}
+
+print("something like that")
 
 local opts = {
 	["go"] = {
@@ -71,6 +49,15 @@ local opts = {
 	},
 }
 
-print(vim.api.nvim_get_current_buf())
+local function lala()
+	local bfn = buf_helper.get_current_buffer_number()
+	local ft = "go"
+	ts_helper.capture_and_iter(ft, bfn, opts[ft].test_query, function(_, node, name)
+		print(name)
+		print(ts_helper.get_content(node, bfn))
+	end)
+end
+
+vim.api.nvim_create_user_command("Garompeta", lala, {})
 
 return Mod

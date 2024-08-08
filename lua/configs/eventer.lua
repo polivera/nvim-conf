@@ -13,9 +13,9 @@ Mod.load = function(opts)
 		["*.html"] = { "prettier -w ###file###" },
 		["*.yaml"] = { "prettier -w ###file###" },
 		["*.sh"] = { "shfmt -l -w ###file###" },
+		["*.php"] = { "php-cs-fixer fix ###file### --rules=@PSR12" },
 	}
 	require("eventer").setup(opts or conf)
 end
 
 return Mod
--- it works!!!

@@ -11,8 +11,24 @@ M.get_root = function(file_type, bufnr)
 	return tree:root()
 end
 
-local laa = M.get_root("go", 24)
+---Query treesiter
+---@param file_type string
+---@param query string
+---@return vim.treesitter.Query
+M.query = function(file_type, query)
+	return vim.treesitter.query.parse(file_type, query)
+end
 
-print(vim.inspect(laa))
+M.capture_and_iter = function(file_type, bufnr, query, callback)
+	local root = M.get_root(file_type, bufnr)
+	local emb_sql = M.query(file_type, query)
+	for id, node in emb_sql:iter_captures(root, bufnr, 0, -1) do
+		callback(id, node, emb_sql.captures[id])
+	end
+end
+
+M.get_content = function(node, bufnr)
+	return vim.treesitter.get_node_text(node, bufnr)
+end
 
 return M
