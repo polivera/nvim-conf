@@ -1,5 +1,6 @@
 if os.getenv("XAP_DEBUG") == "true" then
 	package.loaded["helpoga.buffer"] = nil
+	package.loaded["helpoga.treesitter"] = nil
 end
 --[[
 Testonga init
