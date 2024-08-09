@@ -1,10 +1,10 @@
 local M = {}
 
 ---Get treesitter root node
----@param bufnr number buffer identifier
 ---@param file_type string file_type of buffer
+---@param bufnr number buffer identifier
 ---@return TSNode
-M.get_root = function(bufnr, file_type)
+M.get_root = function(file_type, bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
 	local parser = vim.treesitter.get_parser(bufnr, file_type, {})
 	local tree = parser:parse()[1]
