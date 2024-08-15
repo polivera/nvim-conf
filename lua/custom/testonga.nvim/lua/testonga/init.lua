@@ -25,10 +25,11 @@ local Mod = {}
 
 local opts = {
 	["go"] = require("testonga.configs.go"):new(),
+	["php"] = require("testonga.configs.php"):new(),
 }
 
 vim.api.nvim_create_user_command("Garompeta", function()
-	opts["go"]:show_test_in_file()
+	opts["php"]:show_test_in_file()
 end, {})
 
 return Mod
