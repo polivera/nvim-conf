@@ -62,8 +62,8 @@ end
 
 ---Put content on buffer
 ---@param content table | string
----@param bufnr number
----@param buf_start boolean?
+---@param bufnr integer
+---@param buf_start? boolean
 M.put_content_on_buffer = function(content, bufnr, buf_start)
 	if type(content) ~= "table" then
 		content = { content }
@@ -75,8 +75,8 @@ end
 ---Open a scratch buffer
 ---@param content string
 ---@param buffer_name string
----@param winid number
----@param show_in_list boolean
+---@param winid? number
+---@param show_in_list? boolean
 ---@return integer winid
 ---@return integer bufnr
 M.vscratch = function(content, buffer_name, winid, show_in_list)
@@ -86,6 +86,45 @@ M.vscratch = function(content, buffer_name, winid, show_in_list)
 	M.put_content_on_buffer(content, bufnr, true)
 	vim.api.nvim_win_set_buf(winid, bufnr)
 	return winid, bufnr
+end
+
+---Get buffer relative (to the project) path
+---@param bufnr integer
+---@return string
+M.get_buffer_file_path = function(bufnr)
+	return vim.fn.fnamemodify(vim.fn.bufname(bufnr), ":p:.:h")
+end
+
+---Get buffer full path
+---@param bufnr integer
+---@return string
+M.get_buffer_full_path = function(bufnr)
+	return vim.fn.fnamemodify(vim.fn.bufname(bufnr), ":p:h")
+end
+
+---Get file name of buffer <bufnr>
+---@param bufnr integer
+---@return string
+M.get_buffer_file_name = function(bufnr)
+	return vim.fn.fnamemodify(vim.fn.bufname(bufnr), ":t")
+end
+
+---Get relative path of the current buffer
+---@return string
+M.get_current_buffer_file_path = function()
+	return M.get_buffer_file_path(M.get_current_buffer_number())
+end
+
+---Get full path of the current buffer
+---@return string
+M.get_current_buffer_full_path = function()
+	return M.get_buffer_full_path(M.get_current_buffer_number())
+end
+
+---Get current buffer file name
+---@return string
+M.get_current_buffer_file_name = function()
+	return M.get_buffer_file_name(M.get_current_buffer_number())
 end
 
 ---Get the buffer file type

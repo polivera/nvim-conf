@@ -1,19 +1,23 @@
 if os.getenv("XAP_DEBUG") == "true" then
 	package.loaded["helpoga.buffer"] = nil
 	package.loaded["helpoga.treesitter"] = nil
+	package.loaded["helpoga.telescope"] = nil
+	package.loaded["helpoga.path"] = nil
 end
 
 local buf_helper = require("helpoga.buffer")
-local ts_helper = require("helpoga.treesitter")
+local treesit_helper = require("helpoga.treesitter")
+local telescope_helper = require("helpoga.telescope")
+local path_helper = require("helpoga.path")
+
+local winid = nil
 
 ---@class CommonTestonga
 ---@field cmd string Command to run test
----@field cmd_args string Arguments to the test command
 ---@field query string TSQuery to retrieve tests from file
 local CommonTestonga = {
 	file_type = "common",
 	cmd = "echo 'you should not use this'",
-	cmd_args = "",
 	query = [[
         (
           [
@@ -40,7 +44,7 @@ end
 ---@return fun(id:integer, node:TSNode, name:string)
 function CommonTestonga:capture_callback(bufnr, captures)
 	return function(_, node, _)
-		table.insert(captures, ts_helper.get_content(node, bufnr))
+		table.insert(captures, treesit_helper.get_content(node, bufnr))
 	end
 end
 
@@ -49,8 +53,45 @@ end
 function CommonTestonga:get_test_list()
 	local bufnr = buf_helper.get_current_buffer_number()
 	local test_list = {} -- :reference:
-	ts_helper.capture_and_iter(self.file_type, bufnr, self.query, self:capture_callback(bufnr, test_list))
+	treesit_helper.capture_and_iter(self.file_type, bufnr, self.query, self:capture_callback(bufnr, test_list))
 	return test_list
+end
+
+---Show all test in the test file
+function CommonTestonga:show_test_in_file()
+	local test_list = self:get_test_list()
+	telescope_helper.show_list("Tests on file", test_list, function(selection)
+		self:run_test(selection)
+	end)
+end
+
+---Build the command used to run the test
+---@param test_name string
+---@return string
+function CommonTestonga:build_test_command(test_name)
+	local cmd = path_helper.replace_all_on_path(self.cmd)
+	cmd = string.gsub(cmd, "###test###", test_name)
+	return cmd
+end
+
+--- Run selected test
+function CommonTestonga:run_test(test_name)
+	local bufid = nil
+	local test_command = self:build_test_command(test_name)
+	winid, bufid = buf_helper.vscratch(string.format("Running test %s", test_command), "Testonga!", winid)
+
+	vim.fn.jobstart(test_command, {
+		stdout_buffered = true,
+		on_stdout = function(_, data)
+			buf_helper.put_content_on_buffer(data or "", bufid)
+		end,
+		on_stderr = function(_, data)
+			buf_helper.put_content_on_buffer(data or "", bufid)
+		end,
+		on_exit = function(_, _)
+			buf_helper.put_content_on_buffer("Job complete!", bufid)
+		end,
+	})
 end
 
 return CommonTestonga

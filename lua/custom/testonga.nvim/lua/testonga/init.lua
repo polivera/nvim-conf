@@ -28,10 +28,7 @@ local opts = {
 }
 
 vim.api.nvim_create_user_command("Garompeta", function()
-	local foo = opts["go"]:get_test_list()
-	for _, val in pairs(foo) do
-		print(val)
-	end
+	opts["go"]:show_test_in_file()
 end, {})
 
 return Mod

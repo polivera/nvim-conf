@@ -1,9 +1,11 @@
 if os.getenv("XAP_DEBUG") == "true" then
 	package.loaded["helpoga.treesitter"] = nil
+	package.loaded["helpoga.path"] = nil
 	package.loaded["testonga.configs.common"] = nil
 end
 
 local ts_helper = require("helpoga.treesitter")
+local path_helper = require("helpoga.path")
 local CommonTestonga = require("testonga.configs.common")
 
 ---@class GoTestonga : CommonTestonga
@@ -14,8 +16,10 @@ GoTestonga.__parent = CommonTestonga
 function GoTestonga:new()
 	return CommonTestonga.new(self, {
 		file_type = "go",
-		cmd = "go test",
-		cmd_args = "-tags=unit,integration,e2e",
+		cmd = string.format(
+			"go test -tags=unit,integration,e2e -v ./%s/. -run '###test###'",
+			path_helper.placeholder.RELPATH
+		),
 		query = [[
             (
               [
