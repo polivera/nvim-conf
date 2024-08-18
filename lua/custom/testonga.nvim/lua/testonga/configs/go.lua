@@ -5,7 +5,7 @@ if os.getenv("XAP_DEBUG") == "true" then
 end
 
 local ts_helper = require("helpoga.treesitter")
-local path_helper = require("helpoga.path")
+local pl_helper = require("helpoga.placeholder")
 local CommonTestonga = require("testonga.configs.common")
 
 ---@class GoTestonga : CommonTestonga
@@ -17,8 +17,9 @@ function GoTestonga:new()
 	return CommonTestonga.new(self, {
 		file_type = "go",
 		cmd = string.format(
-			"go test -tags=unit,integration,e2e -v ./%s/. -run '###test###'",
-			path_helper.placeholder.RELPATH
+			"go test -tags=unit,integration,e2e -v ./%s/. -run '%s'",
+			pl_helper.placeholder.RELPATH,
+			pl_helper.placeholder.TEST
 		),
 		query = [[
             (

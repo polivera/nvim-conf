@@ -8,7 +8,7 @@ end
 local buf_helper = require("helpoga.buffer")
 local treesit_helper = require("helpoga.treesitter")
 local telescope_helper = require("helpoga.telescope")
-local path_helper = require("helpoga.path")
+local pl_helper = require("helpoga.placeholder")
 
 local winid = nil
 
@@ -69,8 +69,8 @@ end
 ---@param test_name string
 ---@return string
 function CommonTestonga:build_test_command(test_name)
-	local cmd = path_helper.replace_all_on_path(self.cmd)
-	cmd = string.gsub(cmd, "###test###", test_name)
+	local cmd = pl_helper.replace_no_param(self.cmd)
+	cmd = pl_helper.replace_test(cmd, test_name)
 	return cmd
 end
 

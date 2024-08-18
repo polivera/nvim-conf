@@ -4,8 +4,7 @@ if os.getenv("XAP_DEBUG") == "true" then
 	package.loaded["testonga.configs.common"] = nil
 end
 
-local ts_helper = require("helpoga.treesitter")
-local path_helper = require("helpoga.path")
+local pl_helper = require("helpoga.placeholder")
 local CommonTestonga = require("testonga.configs.common")
 
 ---@class PHPTestonga : CommonTestonga
@@ -17,8 +16,9 @@ function PHPTestonga:new()
 	return CommonTestonga.new(self, {
 		file_type = "php",
 		cmd = string.format(
-			"php ./vendor/bin/phpunit --config ./phpunit.xml --filter '###test###' --test-suffix %s",
-			path_helper.placeholder.FILENAME
+			"php ./vendor/bin/phpunit --config ./phpunit.xml --filter '%s' --test-suffix %s",
+			pl_helper.placeholder.TEST,
+			pl_helper.placeholder.FILENAME
 		),
 		query = [[
             (

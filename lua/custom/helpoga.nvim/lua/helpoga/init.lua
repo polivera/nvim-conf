@@ -9,7 +9,7 @@ end
 local M = {}
 
 M.buffer = require("helpoga.buffer")
-M.path = require("helpoga.path")
+M.placeholder = require("helpoga.placeholder")
 M.telescope = require("helpoga.telescope")
 M.treesitter = require("helpoga.treesitter")
 M.window = require("helpoga.window")
