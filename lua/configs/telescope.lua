@@ -120,3 +120,8 @@ vim.keymap.set("n", "<leader>fm", "<cmd>Telescope commands<cr>", opts)
 vim.keymap.set("n", "<leader>fu", "<cmd>Telescope buffers<cr>", opts)
 vim.keymap.set("n", "<leader>fn", "<cmd>Telescope commands<cr>", opts)
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>", opts)
+
+-- Quick maps
+vim.keymap.set("n", "<C-s>f", "<cmd>Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<C-s>j", "<cmd>Telescope live_grep<cr>", opts)
+vim.keymap.set("n", "<M-x>", "<cmd>Telescope commands<cr>", opts)

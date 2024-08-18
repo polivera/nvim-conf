@@ -1,7 +1,7 @@
 local M = {}
 
 ---Check if given window exist
----@param winid number
+---@param winid integer
 ---@return boolean
 M.window_exist = function(winid)
 	return winid and vim.api.nvim_win_is_valid(winid)

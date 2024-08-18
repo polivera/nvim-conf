@@ -27,23 +27,25 @@ local function set_autocmd(pattern, commands)
 				exec_command = exec_command .. replace_vars(cmd) .. ";"
 			end
 
-			if exec_command ~= "" then
-				vim.fn.jobstart(exec_command, {
-					on_exit = function()
-						vim.api.nvim_command("checktime")
-					end,
-					on_stderr = function(_, data, _)
-						if #data > 1 then
-							print("[Error] in autocmd")
-							for k, v in ipairs(data) do
-								if v ~= "" then
-									print(k, " - ", v)
-								end
+			if exec_command == "" then
+				return
+			end
+
+			vim.fn.jobstart(exec_command, {
+				on_exit = function()
+					vim.api.nvim_command("checktime")
+				end,
+				on_stderr = function(_, data, _)
+					if #data > 1 then
+						print("[Error] in autocmd")
+						for k, v in ipairs(data) do
+							if v ~= "" then
+								print(k, " - ", v)
 							end
 						end
-					end,
-				})
-			end
+					end
+				end,
+			})
 		end,
 	})
 end
