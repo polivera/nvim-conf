@@ -47,3 +47,6 @@ vim.keymap.set({ "n", "x" }, "c", '"_c', opts)
 vim.keymap.set({ "n", "x" }, "C", '"_C', opts)
 vim.keymap.set({ "n", "x" }, "x", '"_x', opts)
 vim.keymap.set({ "n", "x" }, "X", '"_X', opts)
+
+-- Develop plugins
+vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<cr>")
