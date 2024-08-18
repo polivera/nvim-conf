@@ -7,6 +7,13 @@ return {
 		end,
 	},
 	{
+		"xapitan/testonga.nvim",
+		dev = true,
+		config = function()
+			require("testonga")
+		end,
+	},
+	{
 		"xapitan/helpoga.nvim",
 		dev = true,
 	},
