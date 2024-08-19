@@ -147,7 +147,7 @@ require("mason").setup()
 -- for you, so that they are available from within Neovim.
 -- local ensure_installed = vim.tbl_keys(servers or {})
 -- or
-local ensure_installed = {}
+local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, other_tools)
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
