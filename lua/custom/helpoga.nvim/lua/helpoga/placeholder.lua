@@ -1,5 +1,6 @@
 if os.getenv("XAP_DEBUG") == "true" then
 	package.loaded["helpoga.buffer"] = nil
+	package.loaded["helpoga.path"] = nil
 end
 
 local M = {}
@@ -11,17 +12,17 @@ M.placeholder = {
 	TEST = "###test###",
 }
 
-local buf_helper = require("helpoga.buffer")
+local path_helper = require("helpoga.path")
 
 local no_param_func_map = {
 	function(path)
-		return string.gsub(path, M.placeholder.RELPATH, buf_helper.get_current_buffer_file_path())
+		return string.gsub(path, M.placeholder.RELPATH, path_helper.get_current_buffer_file_path())
 	end,
 	function(path)
-		return string.gsub(path, M.placeholder.ABSPATH, buf_helper.get_current_buffer_full_path())
+		return string.gsub(path, M.placeholder.ABSPATH, path_helper.get_current_buffer_full_path())
 	end,
 	function(path)
-		return string.gsub(path, M.placeholder.FILENAME, buf_helper.get_current_buffer_file_name())
+		return string.gsub(path, M.placeholder.FILENAME, path_helper.get_current_buffer_file_name())
 	end,
 }
 

@@ -1,7 +1,5 @@
 if os.getenv("XAP_DEBUG") == "true" then
 	package.loaded["helpoga.buffer"] = nil
-	package.loaded["helpoga.treesitter"] = nil
-	package.loaded["testonga.configs.go"] = nil
 end
 --[[
 Testonga init
@@ -21,6 +19,7 @@ This should do:
 - Run all tests in file
 --]]
 
+local buf_helper = require("helpoga.buffer")
 local Mod = {}
 
 local opts = {
@@ -28,8 +27,16 @@ local opts = {
 	["php"] = require("testonga.configs.php"):new(),
 }
 
-vim.api.nvim_create_user_command("Garompeta", function()
-	opts["php"]:show_test_in_file()
-end, {})
+Mod.show_test_in_file = function()
+	local ftype = buf_helper.get_current_buffer_file_type()
+	local testonga = opts[ftype]
+	if testonga == nil then
+		print("Test not configured for file type")
+		return
+	end
+	testonga:show_test_in_file()
+end
+
+Mod.setup = function() end
 
 return Mod

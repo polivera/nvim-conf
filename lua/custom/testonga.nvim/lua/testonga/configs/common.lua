@@ -60,6 +60,10 @@ end
 ---Show all test in the test file
 function CommonTestonga:show_test_in_file()
 	local test_list = self:get_test_list()
+	if #test_list == 1 then
+		print("No test found in file")
+		return
+	end
 	telescope_helper.show_list("Tests on file", test_list, function(selection)
 		self:run_test(selection)
 	end)

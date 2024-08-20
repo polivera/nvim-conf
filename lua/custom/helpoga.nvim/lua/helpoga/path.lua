@@ -1,5 +1,10 @@
 if os.getenv("XAP_DEBUG") == "true" then
+	package.loaded["helpoga.buffer"] = nil
 end
+
+---TODO: Better separate what is buffer and what is path helper
+
+local buf_helper = require("helpoga.buffer")
 
 ---Return table
 local M = {}
@@ -28,26 +33,19 @@ end
 ---Get relative path of the current buffer
 ---@return string
 M.get_current_buffer_file_path = function()
-	return M.get_buffer_file_path(M.get_current_buffer_number())
+	return M.get_buffer_file_path(buf_helper.get_current_buffer_number())
 end
 
 ---Get full path of the current buffer
 ---@return string
 M.get_current_buffer_full_path = function()
-	return M.get_buffer_full_path(M.get_current_buffer_number())
+	return M.get_buffer_full_path(buf_helper.get_current_buffer_number())
 end
 
 ---Get current buffer file name
 ---@return string
 M.get_current_buffer_file_name = function()
-	return M.get_buffer_file_name(M.get_current_buffer_number())
-end
-
----Get the buffer file type
----(Yes, is a one liner, but I can never remember it)
----@return string
-M.get_file_type = function()
-	return vim.bo.filetype
+	return M.get_buffer_file_name(buf_helper.get_current_buffer_number())
 end
 
 return M

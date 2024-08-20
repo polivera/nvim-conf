@@ -10,7 +10,7 @@ return {
 		"xapitan/testonga.nvim",
 		dev = true,
 		config = function()
-			require("testonga")
+			require("configs.testonga")
 		end,
 	},
 	{

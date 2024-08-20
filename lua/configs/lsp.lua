@@ -20,7 +20,7 @@ local servers = {
 		},
 	},
 	templ = {},
-	tailwindCSS = {},
+	tailwindcss = {},
 	lua_ls = {
 		settings = {
 			Lua = {
