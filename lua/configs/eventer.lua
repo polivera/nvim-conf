@@ -14,6 +14,7 @@ Mod.load = function(opts)
 		["*.yaml"] = { "prettier -w ###file###" },
 		["*.sh"] = { "shfmt -l -w ###file###" },
 		["*.php"] = { "php-cs-fixer fix ###file### --rules=@PSR12" },
+		["*.proto"] = { "clang-format -i ###file###" },
 	}
 	require("eventer").setup(opts or conf)
 end

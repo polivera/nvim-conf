@@ -35,6 +35,7 @@ function GoTestonga:new()
                      (interpreted_string_literal) @test-name)))
 
                 (#match? @test-func "Run")
+                (#match? @func-name "Test")
               ]
             ) 
         ]],
