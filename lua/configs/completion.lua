@@ -7,7 +7,7 @@ local cmp = require("cmp")
 cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
+		-- { name = "luasnip" },
 		{ name = "path" },
 		{ name = "buffer" },
 	},
@@ -22,11 +22,11 @@ cmp.setup({
 			{ "i", "c" }
 		),
 	},
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
+	-- snippet = {
+	-- 	expand = function(args)
+	-- 		require("luasnip").lsp_expand(args.body)
+	-- 	end,
+	-- },
 })
 
 -- Config luasnip
@@ -37,9 +37,9 @@ ls.config.set_config({
 })
 
 -- Load snippets from folder
-for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/snippets/*.lua", true)) do
-	loadfile(ft_path)()
-end
+-- for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/snippets/*.lua", true)) do
+-- 	loadfile(ft_path)()
+-- end
 
 vim.keymap.set({ "i", "s" }, "<c-n>", function()
 	if ls.expand_or_jumpable() then

@@ -1,6 +1,7 @@
 local Mod = {}
 
 Mod.load = function(opts)
+	opts = opts or {}
 	local conf = {
 		-- TODO: I should do a merge here instead of replacing
 		["*.lua"] = { "stylua ###file###" },
@@ -16,7 +17,8 @@ Mod.load = function(opts)
 		["*.php"] = { "php-cs-fixer fix ###file### --rules=@PSR12" },
 		["*.proto"] = { "clang-format -i ###file###" },
 	}
-	require("eventer").setup(opts or conf)
+	conf = vim.tbl_extend("force", conf, opts)
+	require("eventer").setup(conf)
 end
 
 return Mod
