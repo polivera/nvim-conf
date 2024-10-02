@@ -10,7 +10,7 @@ local servers = {
 			gopls = {
 				completeUnimported = true,
 				usePlaceholders = false,
-				buildFlags = { "-tags=unit,integration,e2e" },
+				buildFlags = { "-tags=unit,integration,e2e,wireinject" },
 				analyses = {
 					unusedparams = true,
 				},
@@ -43,14 +43,10 @@ local servers = {
 			provideFormatter = false,
 		},
 	},
-	tsserver = {},
+	ts_ls = {},
 	phpactor = {},
 	bashls = {},
-}
-
--- Add more tools for Mason to install
-local other_tools = {
-	"stylua", -- Used to format Lua code
+	htmx = {},
 }
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -147,8 +143,8 @@ require("mason").setup()
 -- for you, so that they are available from within Neovim.
 -- local ensure_installed = vim.tbl_keys(servers or {})
 -- or
-local ensure_installed = vim.tbl_keys(servers or {})
-vim.list_extend(ensure_installed, other_tools)
+-- WARN: Giving some problems with package name installation. I think I rather install it myself
+-- local ensure_installed = vim.tbl_keys(servers or {})
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 require("mason-lspconfig").setup({

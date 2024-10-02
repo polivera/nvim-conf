@@ -80,10 +80,27 @@ end
 
 --- Run selected test
 function CommonTestonga:run_test(test_name)
-	local bufid = nil
 	local test_command = self:build_test_command(test_name)
-	winid, bufid = buf_helper.vscratch(string.format("Running test %s", test_command), "Testonga!", winid)
+	vim.g.nvim_testonga = vim.tbl_extend("force", vim.g.nvim_testonga, { LAST_TEST = test_command })
+	CommonTestonga:exec_test_command(test_command)
+end
 
+--- Run last runned test commnad
+function CommonTestonga:run_last_test()
+	local test_command = vim.g.nvim_testonga.LAST_TEST
+	if test_command == nil then
+		print("no test runned yet")
+		return
+	end
+	CommonTestonga:exec_test_command(test_command)
+end
+
+---Run the test in the background and output result to a new buffer
+---@param test_command string
+function CommonTestonga:exec_test_command(test_command)
+	local bufid = nil
+	winid, bufid = buf_helper.vscratch(string.format("Running test %s", test_command), "Testonga!", winid)
+	vim.api.nvim_buf_set_keymap(bufid, "n", "q", "<cmd>bd!<cr>", { noremap = true, silent = true })
 	vim.fn.jobstart(test_command, {
 		stdout_buffered = true,
 		on_stdout = function(_, data)

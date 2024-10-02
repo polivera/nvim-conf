@@ -59,12 +59,12 @@ local telescope_settings = {
 		},
 		initial_mode = "insert",
 		set_env = { ["COLORTERM"] = "truecolor" },
-		-- Laout configuration ----------------------------------
+		-- Layout configuration ----------------------------------
 		prompt_prefix = "   ",
 		selection_caret = "> ",
 		entry_prefix = " ",
 		layout_strategy = "horizontal",
-		path_display = { "truncate" },
+		path_display = { "absolute" },
 		color_devicons = true,
 		winblend = 0,
 		border = {},
@@ -72,15 +72,15 @@ local telescope_settings = {
 		layout_config = {
 			horizontal = {
 				prompt_position = "top",
-				preview_width = 0.55,
-				results_width = 0.8,
+				preview_width = 0.4,
+				results_width = 0.6,
 			},
 			vertical = {
 				mirror = false,
 			},
-			width = 0.87,
-			height = 0.80,
-			preview_cutoff = 120,
+			width = 0.97,
+			height = 0.97,
+			preview_cutoff = 180,
 			prompt_position = "top",
 		},
 		selection_strategy = "reset",
@@ -94,6 +94,9 @@ local telescope_settings = {
 	pickers = {
 		find_files = {
 			hidden = false,
+		},
+		lsp_references = {
+			path_display = { "absolute" },
 		},
 	},
 	-- extensions
