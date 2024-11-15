@@ -4,6 +4,8 @@ Mod.load = function(opts)
 	opts = opts or {}
 	local conf = {
 		-- TODO: I should do a merge here instead of replacing
+		["*.c"] = { "clang-format -i --style=LLVM ###file###" },
+		["*.h"] = { "clang-format -i --style=LLVM ###file###" },
 		["*.lua"] = { "stylua ###file###" },
 		["*.go"] = { "gosimports -w ###file###" },
 		["*.templ"] = { "templ fmt ###file### && templ generate -f ###file###" },

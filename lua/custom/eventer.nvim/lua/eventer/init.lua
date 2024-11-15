@@ -7,6 +7,8 @@ local pholders = {
 	end,
 }
 
+local event_active = {}
+
 local function replace_vars(cmd)
 	for key, replace_func in pairs(pholders) do
 		cmd = cmd:gsub(key, replace_func())
@@ -21,6 +23,10 @@ local function set_autocmd(pattern, commands)
 		group = ev_group,
 		pattern = pattern,
 		callback = function()
+			if not event_active[pattern] then
+				return
+			end
+
 			-- Concatenate the final command here
 			local exec_command = ""
 			for _, cmd in ipairs(commands) do
@@ -54,6 +60,7 @@ Eventer.setup = function(params)
 	params = params or {}
 	for fileType, commands in pairs(params) do
 		set_autocmd(fileType, commands)
+		event_active[fileType] = true
 	end
 end
 

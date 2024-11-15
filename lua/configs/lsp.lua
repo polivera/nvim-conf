@@ -4,7 +4,7 @@
 
 -- Define servers configuration to be used in the lsp
 local servers = {
-	-- clangd = {},
+	clangd = {},
 	gopls = {
 		settings = {
 			gopls = {
@@ -19,7 +19,6 @@ local servers = {
 			},
 		},
 	},
-	templ = {},
 	tailwindcss = {},
 	lua_ls = {
 		settings = {
@@ -44,9 +43,9 @@ local servers = {
 		},
 	},
 	ts_ls = {},
-	phpactor = {},
 	bashls = {},
-	htmx = {},
+	phpactor = {},
+	marksman = {},
 }
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -144,7 +143,7 @@ require("mason").setup()
 -- local ensure_installed = vim.tbl_keys(servers or {})
 -- or
 -- WARN: Giving some problems with package name installation. I think I rather install it myself
--- local ensure_installed = vim.tbl_keys(servers or {})
+local ensure_installed = vim.tbl_keys(servers or {})
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 require("mason-lspconfig").setup({
