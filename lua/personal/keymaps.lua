@@ -21,7 +21,7 @@ vim.keymap.set("n", "<leader>wq", ":wq<cr>", opts)
 -- Case transformation
 vim.keymap.set({ "n", "v" }, "tu", "gU", opts)
 vim.keymap.set({ "n", "v" }, "tl", "gu", opts)
-vim.keymap.set({ "n", "v" }, "tt", "~", opts)  -- Toggle case
+vim.keymap.set({ "n", "v" }, "tt", "~", opts) -- Toggle case
 
 -- Navigate Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<cr>", opts)
@@ -64,7 +64,7 @@ vim.keymap.set("n", "J", "mzJ`z", opts)
 vim.keymap.set("n", "J", "mzJ`z", opts)
 
 -- Better pasting
-vim.keymap.set("v", "p", '"_dP', opts)  -- Don't overwrite register when pasting in visual mode
+vim.keymap.set("v", "p", '"_dP', opts) -- Don't overwrite register when pasting in visual mode
 
 -- Activate sessionizer
 vim.keymap.set("n", "<C-p>", "<cmd>silent !tmux neww tmux-sessionizer.sh<CR>", opts)
@@ -120,4 +120,5 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 
 -- Terminal mode
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)  -- Exit terminal mode with Esc
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts) -- Exit terminal mode with Esc
+

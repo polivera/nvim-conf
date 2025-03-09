@@ -1,4 +1,4 @@
-function setup_plugin()
+local function setup_plugin()
   -- Set the global ignore patterns
   local ignore_patterns = {
     "node_modules",
@@ -40,7 +40,7 @@ function setup_plugin()
           },
           width = 0.8,
           previewer = false,
-        })
+        }),
       }
     end,
   }
@@ -126,7 +126,7 @@ function setup_plugin()
       },
       selection_strategy = "reset",
       sorting_strategy = "ascending",
-      file_sorter = require("telescope.sorters").get_fuzzy_file,  -- Use fuzzy file sorter for better results
+      file_sorter = require("telescope.sorters").get_fuzzy_file, -- Use fuzzy file sorter for better results
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
       -- Other
       file_ignore_patterns = ignore_patterns,
@@ -164,7 +164,7 @@ function setup_plugin()
           i = {
             -- Override default behavior to open in new splits instead of replacing
             ["<CR>"] = false,
---             ["<C-s>"] = actions.git_create_shadow_buffer, -- Open in a shadow buffer
+            --             ["<C-s>"] = actions.git_create_shadow_buffer, -- Open in a shadow buffer
             ["<C-o>"] = actions.git_checkout_current_buffer, -- Original behavior
             ["<C-h>"] = function(prompt_bufnr)
               -- Open in a horizontal split
@@ -174,7 +174,7 @@ function setup_plugin()
           },
           n = {
             ["<CR>"] = false,
---             ["s"] = actions.git_create_shadow_buffer,
+            --             ["s"] = actions.git_create_shadow_buffer,
             ["o"] = actions.git_checkout_current_buffer,
             ["h"] = function(prompt_bufnr)
               actions.close(prompt_bufnr)
@@ -259,11 +259,10 @@ return {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       -- Additional helpful dependencies
-      "nvim-tree/nvim-web-devicons",  -- For file icons
+      "nvim-tree/nvim-web-devicons", -- For file icons
       "debugloop/telescope-undo.nvim", -- For undo history visualization
       "nvim-telescope/telescope-ui-select.nvim", -- For better UI selection menus
     },
-    config = setup_plugin
+    config = setup_plugin,
   },
 }
-

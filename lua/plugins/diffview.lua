@@ -1,10 +1,10 @@
-function setup_plugin()
+local function setup_plugin()
   require("diffview").setup({
-      view = {
-          merge_tool = {
-              layout = "diff3_mixed",
-          }
-      }
+    view = {
+      merge_tool = {
+        layout = "diff3_mixed",
+      },
+    },
   })
 
   -- Add keybindings
@@ -14,9 +14,10 @@ function setup_plugin()
 end
 
 return {
-    {
-        "sindrets/diffview.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = setup_plugin
-    }
+  {
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = setup_plugin,
+  },
 }
+
