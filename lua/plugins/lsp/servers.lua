@@ -25,5 +25,16 @@ return {
   },
   bashls = {},
   phpactor = {},
+  elixirls = {
+    cmd = { "elixir-ls" },
+    settings = {
+      elixirLS = {
+        -- Optional settings
+        dialyzerEnabled = true,
+        fetchDeps = false,
+        enableTestLenses = true,
+        suggestSpecs = true,
+      },
+    },
+  },
 }
-

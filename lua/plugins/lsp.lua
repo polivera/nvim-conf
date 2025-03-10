@@ -116,7 +116,11 @@ function setup_mason()
   -- or
   -- WARN: Giving some problems with package name installation. I think I rather install it myself
   local ensure_installed = vim.tbl_keys(servers or {})
-  require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+  require("mason-tool-installer").setup({
+    ensure_installed = ensure_installed,
+    auto_update = false,
+    run_on_start = true,
+  })
 
   require("mason-lspconfig").setup({
     handlers = {
