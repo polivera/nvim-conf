@@ -26,7 +26,8 @@ local options = {
   linebreak = true, -- If wrap is enabled, break lines at word boundaries
   list = true, -- Show invisible characters
   listchars = { tab = "» ", trail = "·", nbsp = "␣" }, -- Symbols for invisible characters
-  lazyredraw = true, -- Don't redraw screen during macros (performance boost)
+  lazyredraw = false, -- Don't redraw screen during macros (performance boost)
+  ttyfast = true,
 
   -- Line Numbers
   number = true, -- Show line numbers
@@ -63,9 +64,9 @@ local options = {
   foldlevelstart = 99, -- Start with all folds open
 
   -- Timing Settings
-  timeoutlen = 1000, -- Time to wait for mapped sequence to complete (ms)
+  timeoutlen = 300, -- Time to wait for mapped sequence to complete (ms)
   ttimeoutlen = 10, -- Time to wait for key code sequence to complete (ms)
-  updatetime = 300, -- Time before triggering CursorHold event (ms)
+  updatetime = 100, -- Time before triggering CursorHold event (ms)
 
   -- Completion Options
   completeopt = { "menuone", "noselect" }, -- Completion menu behavior
