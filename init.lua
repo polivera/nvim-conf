@@ -1,6 +1,6 @@
 -- Include personal options
-require("personal.options")
-require("personal.keymaps")
+require("configs.options")
+require("configs.keymaps")
 
 -- Start with plugins
-require("personal.package_manager")
+require("configs.package_manager")

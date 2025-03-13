@@ -4,15 +4,7 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
-      require("catppuccin").setup({
-        flavor = "mocha",
-        integrations = {
-          telescope = {
-            enabled = true,
-          },
-        },
-      })
-      vim.cmd([[colorscheme catppuccin]])
+      require("configs.plugins.catppuccin_config").setup_plugin()
     end,
   },
 }

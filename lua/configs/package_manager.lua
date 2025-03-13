@@ -28,8 +28,7 @@ require("lazy").setup({
   checker = { enabled = false },
   -- set custom plugins folder
   dev = {
-    path = vim.fn.stdpath("config") .. "/lua/personal/custom/",
+    path = vim.fn.stdpath("config") .. "/lua/custom/",
     fallback = false,
   },
 })
-

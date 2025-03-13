@@ -17,9 +17,9 @@ local function setup_plugin()
       always_divide_middle = true,
       globalstatus = true,
       refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
+        statusline = 300,
+        tabline = 100,
+        winbar = 300,
       },
     },
     sections = {
@@ -55,7 +55,7 @@ local function setup_plugin()
       lualine_c = {},
       lualine_x = {},
       lualine_y = {},
-      lualine_z = { "tabs" },
+      lualine_z = {},
     },
     winbar = {},
     inactive_winbar = {},
