@@ -8,7 +8,7 @@ M.setup_eventer = function(opts)
     ["*.c"] = { "clang-format -i --style=LLVM ###file###" },
     ["*.h"] = { "clang-format -i --style=LLVM ###file###" },
     ["*.lua"] = { "stylua ###file###" },
-    ["*.go"] = { "gosimports -w ###file###" },
+    ["*.go"] = { "goimports-reviser -rm-unused -set-alias -format ###file###" },
     ["*.templ"] = { "templ fmt ###file### && templ generate -f ###file###" },
     ["*.json"] = { "prettier -w ###file###" },
     ["*.js"] = { "prettier -w ###file###" },
