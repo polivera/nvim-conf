@@ -1,5 +1,6 @@
 return {
   clangd = {},
+  zls = {},
   gopls = {
     settings = {
       gopls = {

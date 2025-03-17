@@ -111,7 +111,7 @@ M.setup_mason = function()
   -- or
   -- WARN: Giving some problems with package name installation. I think I rather install it myself
   local ensure_installed = vim.tbl_keys(servers or {})
-  ensure_installed = vim.tbl_deep_extend("force", ensure_installed, require("plugins.lsp.tools"))
+  ensure_installed = vim.tbl_deep_extend("force", ensure_installed, require("plugins.lsp.tools").get_list())
   require("mason-tool-installer").setup({
     ensure_installed = ensure_installed,
     auto_update = false,

@@ -20,7 +20,7 @@
   "nvim-lint": { "branch": "master", "commit": "6e9dd545a1af204c4022a8fcd99727ea41ffdcc8" },
   "nvim-lspconfig": { "branch": "master", "commit": "8a1529e46eef5efc86c34c8d9bdd313abc2ecba0" },
   "nvim-tree.lua": { "branch": "master", "commit": "c09ff35de503a41fa62465c6b4ae72d96e7a7ce4" },
-  "nvim-treesitter": { "branch": "master", "commit": "99ea6c5d4389a3278769eb6abb7b3ebefb7d9f2a" },
+  "nvim-treesitter": { "branch": "master", "commit": "845356a256ed6ff5868da582cb62a31d762e1804" },
   "nvim-web-devicons": { "branch": "master", "commit": "d0cafff5c4347a604a07edf7bb9a91fda7eb577e" },
   "oil.nvim": { "branch": "master", "commit": "548587d68b55e632d8a69c92cefd981f360634fa" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },

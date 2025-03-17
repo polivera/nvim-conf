@@ -7,6 +7,7 @@ M.setup_eventer = function(opts)
     -- TODO: I should do a merge here instead of replacing
     ["*.c"] = { "clang-format -i --style=LLVM ###file###" },
     ["*.h"] = { "clang-format -i --style=LLVM ###file###" },
+    ["*.zig"] = { "zig fmt ###file###" },
     ["*.lua"] = { "stylua ###file###" },
     ["*.go"] = { "goimports-reviser -rm-unused -set-alias -format ###file###" },
     ["*.templ"] = { "templ fmt ###file### && templ generate -f ###file###" },

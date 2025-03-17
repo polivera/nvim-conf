@@ -2,19 +2,15 @@ local M = {}
 
 M.setup_plugin = function()
   local lint = require("lint")
+  local tool_list = require("plugins.lsp.tools")
+
+  local linters = {}
+  for k, v in pairs(tool_list.tools.linters) do
+    linters[k] = { v }
+  end
 
   -- Configure linters for specific filetypes
-  lint.linters_by_ft = {
-    go = { "golangcilint" },
-    lua = { "luacheck" },
-    php = { "phpstan" },
-    javascript = { "eslint_d" },
-    typescript = { "eslint_d" },
-    sh = { "shellcheck" },
-    bash = { "shellcheck" },
-    markdown = { "markdownlint" },
-    -- Add more filetypes and their linters as needed
-  }
+  lint.linters_by_ft = linters
 
   -- Customize linter options if needed
   -- Example for golangcilint:
@@ -47,5 +43,7 @@ M.setup_plugin = function()
   vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
   vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", { desc = "List Diagnostics" })
 end
+
+M.setup_plugin()
 
 return M
