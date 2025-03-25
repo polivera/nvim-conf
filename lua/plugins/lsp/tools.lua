@@ -7,6 +7,7 @@ M.tools = {
     go = "goimports-reviser", -- Go formatting script
     javascript = "prettier", -- For JS/TS/JSON/YAML/etc
     typescript = "prettier",
+    yaml = "prettier",
     sh = "shfmt",
     php = "php-cs-fixer", -- PHP formatter
   },
