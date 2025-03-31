@@ -10,6 +10,7 @@ M.tools = {
     yaml = "prettier",
     sh = "shfmt",
     php = "php-cs-fixer", -- PHP formatter
+    vue = "prettier",
   },
 
   linters = {
@@ -19,7 +20,7 @@ M.tools = {
     php = "phpstan", -- PHP linter
     lua = "luacheck", -- Lua linter
     javascript = "eslint_d", -- Javascript linter
-    typescript = "eslint_d", -- Typescript linters
+    typescript = "eslint_d", -- Typescript linter
   },
 
   dap = {},

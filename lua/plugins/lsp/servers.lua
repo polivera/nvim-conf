@@ -26,6 +26,7 @@ return {
   },
   bashls = {},
   phpactor = {},
+  vuels = {},
   elixirls = {
     cmd = { "elixir-ls" },
     settings = {
