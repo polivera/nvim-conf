@@ -1,44 +1,91 @@
--- Options
+-- Neovim Options Configuration
+-- A comprehensive set of options for a smooth Neovim experience
+
 local options = {
-	backup = false, -- creates a backup file
-	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
-	cmdheight = 2, -- more space in the neovim command line for displaying messages
-	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
-	conceallevel = 0, -- so that `` is visible in markdown files
-	fileencoding = "utf-8", -- the encoding written to a file
-	hlsearch = false, -- highlight all matches on previous search pattern
-	ignorecase = true, -- ignore case in search patterns
-	mouse = "a", -- allow the mouse to be used in neovim
-	pumheight = 10, -- pop up menu height
-	laststatus = 3, -- Use global status line when you open different panes
-	showmode = false, -- we don't need to see things like -- INSERT -- anymore, we will have it on a status line
-	showtabline = 2, -- always show tabs
-	smartcase = true, -- smart case
-	smartindent = true, -- make indenting smarter again
-	splitbelow = true, -- force all horizontal splits to go below current window
-	splitright = true, -- force all vertical splits to go to the right of current window
-	swapfile = false, -- creates a swapfile
-	termguicolors = true, -- set term gui colors (most terminals support this)
-	timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
-	undofile = true, -- enable persistent undo
-	updatetime = 300, -- faster completion (4000ms default)
-	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-	expandtab = true, -- convert tabs to spaces
-	shiftwidth = 4, -- the number of spaces inserted for each indentation
-	tabstop = 4, -- insert 2 spaces for a tab
-	cursorline = false, -- highlight the current line
-	colorcolumn = "120", -- Show a colored column as guideline
-	number = true, -- set numbered lines
-	relativenumber = true, -- set relative numbered lines
-	numberwidth = 4, -- set number column width to 2 {default 4}
-	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
-	wrap = false, -- display lines as one long line
-	scrolloff = 8, -- is one of my fav
-	sidescrolloff = 8,
-	guifont = "monospace:h17", -- the font used in graphical neovim applications
-	exrc = true, -- Allow to create a .nvim.lua file per project
+  -- File Handling
+  backup = false, -- Don't create backup files
+  swapfile = false, -- Don't create swap files
+  writebackup = false, -- Don't allow editing files being edited elsewhere
+  undofile = true, -- Enable persistent undo history
+  exrc = true, -- Allow project-specific .nvim.lua configuration files
+  fileencoding = "utf-8", -- Default file encoding for new files
+  hidden = true, -- Allow switching buffers without saving
+  clipboard = "unnamedplus",
+
+  -- Interface and Visual Settings
+  cmdheight = 2, -- Taller command line for better message visibility
+  pumheight = 20, -- Maximum number of items to show in popup menus
+  showmode = false, -- Don't show mode indicator (INSERT/VISUAL) in command line
+  laststatus = 3, -- Use global status line for all windows
+  showtabline = 2, -- Always show the tab line
+  termguicolors = true, -- Use GUI colors in terminal (most terminals support this)
+  guifont = "monospace:h17", -- Font for GUI Neovim clients
+  cursorline = false, -- Don't highlight the current line
+  colorcolumn = "120", -- Show column guideline at character 120
+  wrap = false, -- Display long lines as a single line (no wrapping)
+  linebreak = true, -- If wrap is enabled, break lines at word boundaries
+  list = true, -- Show invisible characters
+  listchars = { tab = "» ", trail = "·", nbsp = "␣" }, -- Symbols for invisible characters
+  lazyredraw = false, -- Don't redraw screen during macros (performance boost)
+  ttyfast = true,
+
+  -- Line Numbers
+  number = true, -- Show line numbers
+  relativenumber = true, -- Show relative line numbers for easier motion
+  numberwidth = 4, -- Width of the line number column
+  signcolumn = "yes", -- Always show sign column to prevent text shifting
+
+  -- Scrolling Behavior
+  scrolloff = 8, -- Minimum lines to keep above/below cursor when scrolling
+  sidescrolloff = 8, -- Minimum columns to keep left/right of cursor when scrolling horizontally
+  smoothscroll = true, -- Smooth scrolling for horizontal movement (Neovim 0.10+)
+
+  -- Indentation and Tabs
+  expandtab = true, -- Convert tabs to spaces
+  shiftwidth = 4, -- Number of spaces for each indentation level
+  tabstop = 4, -- Number of spaces a tab counts for
+  smartindent = true, -- Smart auto-indenting when starting a new line
+
+  -- Search Behavior
+  hlsearch = false, -- Don't highlight all matches from previous search
+  ignorecase = true, -- Ignore case in search patterns
+  smartcase = true, -- Override ignorecase if search contains uppercase
+  incsearch = true, -- Show search results as you type
+
+  -- Command Line Completion
+  wildmenu = true, -- Enhanced command-line completion
+  wildmode = "longest,list,full", -- Complete longest common string, then list alternatives, then full match
+
+  -- Mouse Support
+  mouse = "a", -- Enable mouse in all modes
+
+  -- Code Folding
+  foldmethod = "indent", -- Fold code based on indentation levels
+  foldlevelstart = 99, -- Start with all folds open
+
+  -- Timing Settings
+  timeoutlen = 200, -- Time to wait for mapped sequence to complete (ms)
+  ttimeoutlen = 10, -- Time to wait for key code sequence to complete (ms)
+  updatetime = 100, -- Time before triggering CursorHold event (ms)
+
+  -- Completion Options
+  completeopt = { "menuone", "noselect" }, -- Completion menu behavior
+
+  -- Window Splitting Behavior
+  splitbelow = true, -- Horizontal splits go below current window
+  splitright = true, -- Vertical splits go to the right of current window
+
+  -- Diff Mode Improvements
+  diffopt = vim.opt.diffopt + { "algorithm:patience", "indent-heuristic" }, -- Better diff algorithm
+
+  -- Markdown Settings
+  conceallevel = 0, -- Don't hide markdown syntax characters
+
+  -- Virtual Editing
+  virtualedit = "block", -- Allow cursor to move where there is no text in visual block mode
 }
 
+-- Apply all options
 for k, v in pairs(options) do
-	vim.opt[k] = v
+  vim.opt[k] = v
 end

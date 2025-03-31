@@ -1,18 +1,10 @@
 return {
-    { 
-    "catppuccin/nvim", 
-    name = "catppuccin", 
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
-    config = function() 
-        require("catppuccin").setup({
-            flavor = "mocha",
-            integrations = {
-                telescope = {
-                    enabled =  true,
-                },
-            },
-        })
-        vim.cmd([[colorscheme catppuccin]])
+    config = function()
+      require("configs.plugins.catppuccin_config").setup_plugin()
     end,
-    },
+  },
 }

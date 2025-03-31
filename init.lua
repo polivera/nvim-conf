@@ -1,11 +1,6 @@
--- Load options
+-- Include personal options
 require("configs.options")
-
--- Load keymaps
 require("configs.keymaps")
 
--- FileType plugin
-require("configs.filetype")
-
--- Lazy plugin manager
-require("configs.lazy")
+-- Start with plugins
+require("configs.package_manager")

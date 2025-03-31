@@ -1,4 +1,39 @@
-local function setup_plugin()
+local M = {}
+local opts = { noremap = true, silent = true }
+
+M.setup_diffview = function()
+  require("diffview").setup({
+    view = {
+      merge_tool = {
+        layout = "diff3_mixed",
+      },
+    },
+  })
+
+  -- Add keybindings
+  vim.keymap.set("n", "<leader>dv", ":DiffviewOpen<CR>", opts)
+  vim.keymap.set("n", "<leader>df", ":DiffviewFileHistory %<CR>", opts)
+  vim.keymap.set("n", "<leader>dc", ":DiffviewClose<CR>", opts)
+end
+
+M.setup_neogit = function()
+  local neogit = require("neogit")
+  neogit.setup({
+    commit_editor = {
+      kind = "tab",
+      staged_diff_split_kind = "vsplit",
+    },
+    integrations = {
+      telescope = true,
+    },
+  })
+
+  vim.keymap.set("n", "<leader>og", "<cmd>Neogit<cr>", opts)
+  vim.keymap.set("n", "<leader>od", "<cmd>DiffviewOpen<cr>", opts)
+  vim.keymap.set("n", "<leader>ol", "<cmd>Neogit log<cr>", opts)
+end
+
+M.setup_gitsigns = function()
   require("gitsigns").setup({
     signs = {
       add = { text = "┃" },
@@ -49,15 +84,8 @@ local function setup_plugin()
     },
   })
 
-  local opts = { noremap = true, silent = true }
-
   vim.keymap.set("n", "<leader>ol", "<cmd>Gitsigns blame_line<cr>", opts)
   vim.keymap.set("n", "<leader>oa", "<cmd>Gitsigns blame<cr>", opts)
 end
 
-return {
-  {
-    "lewis6991/gitsigns.nvim",
-    config = setup_plugin,
-  },
-}
+return M
