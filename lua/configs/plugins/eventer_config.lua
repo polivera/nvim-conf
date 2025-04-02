@@ -17,6 +17,7 @@ M.setup_eventer = function(opts)
     ["*.scss"] = { "prettier -w ###file###" },
     ["*.html"] = { "prettier -w ###file###" },
     ["*.yaml"] = { "prettier -w ###file###" },
+    ["*.vue"] = { "prettier -w ###file###" },
     ["*.sh"] = { "shfmt -l -w ###file###" },
     ["*.php"] = { "php-cs-fixer fix ###file### --rules=@PSR12" },
     ["*.proto"] = { "clang-format -i ###file###" },

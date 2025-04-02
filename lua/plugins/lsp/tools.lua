@@ -3,24 +3,25 @@ local M = {}
 
 M.tools = {
   formatters = {
-    lua = "stylua", -- Lua formatter
-    go = "goimports-reviser", -- Go formatting script
-    javascript = "prettier", -- For JS/TS/JSON/YAML/etc
+    lua = "stylua",
+    go = "goimports-reviser",
+    javascript = "prettier",
     typescript = "prettier",
     yaml = "prettier",
     sh = "shfmt",
-    php = "php-cs-fixer", -- PHP formatter
-    vue = "prettier",
+    php = "php-cs-fixer",
+    -- vue = "prettier",
   },
 
   linters = {
-    go = "golangci-lint", -- Go linter
-    sh = "shellcheck", -- Shell linter
-    bash = "shellcheck", -- Shell linter
-    php = "phpstan", -- PHP linter
-    lua = "luacheck", -- Lua linter
-    javascript = "eslint_d", -- Javascript linter
-    typescript = "eslint_d", -- Typescript linter
+    go = "golangci-lint",
+    sh = "shellcheck",
+    bash = "shellcheck",
+    php = "phpstan",
+    lua = "luacheck",
+    vue = "eslint_d",
+    javascript = "eslint_d",
+    typescript = "eslint_d",
   },
 
   dap = {},
